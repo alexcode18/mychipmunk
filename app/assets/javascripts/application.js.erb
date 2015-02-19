@@ -1,0 +1,213 @@
+// This is a manifest file that'll be compiled into application.js, which will include all the files
+// listed below.
+//
+// Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
+// or any plugin's vendor/assets/javascripts directory can be referenced here using a relative path.
+//
+// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
+// compiled file.
+//
+// Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
+// about supported directives.
+//
+//= require jquery
+//= require jquery_ujs
+//= require turbolinks
+//= require underscore
+//= require backbone
+//= require handlebars
+//= require_self
+//= require_tree ./backbone/routers
+//= require_tree ./backbone/models
+//= require_tree ./backbone/collections
+//= require_tree ./backbone/views
+//= require_tree ./templates
+//= require_tree .
+
+var App = {
+	Models: {},
+	Collections: {},
+	Views: {},
+	Routers: {}
+};
+
+$(function(){
+	// $('body').on('click', '.getBearButton', renderBearScreen);
+	// $('body').on('click', '#search_button', search);
+	// $('body').on('click', '#search_button', search);
+	// $('body').on('click', '#add_happy', raiseHappy);
+
+	// $('body').on('keypress',function(){
+	// 	var keyCode = (event.keyCode ? event.keyCode : event.which);
+	// 	if(keyCode == '13' && $('#sign_up').css('display') == 'inline-block'){
+	// 		alert('Enter key is pressed!');
+	// 	}
+	// })
+});
+
+function renderErrors(errors){
+	for (var i = 0; i < errors.length; i++){
+		var error = $('<p>').text(i).prependTo('#login').css('color', 'red');
+	}
+};
+
+// function createOrUpdateUser(){
+// 	var email = $('input[name="signup_email"]').val();
+// 	var password = $('input[name="signup_password"]').val();
+// 	var passwordConf = $('input[name="signup_confirmation"]').val();
+// 	var childName = $('input[name="childName"]').val();
+// 	var childGender = $('input:radio[name=childGender]:checked').val();
+// 	var favColor = $('input:radio[name="childFavColor"]:checked').val();
+	
+// 	var newUser = {
+// 		parent_email: email,
+// 		password: password,
+// 		password_confirmation: passwordConf,
+// 		child_name: childName,
+// 		child_gender: childGender,
+// 		favorite_color: favColor
+// 	};
+
+// 	if (bearID) {
+// 		$.get('/bears/' + bearID).done(function(bear){
+// 			var userID = bear.user.id;
+// 			$.ajax({
+// 				url: '/users/' + userID,
+// 				type: 'put',
+// 				data: newUser
+// 			}).done(bearScreenData(bear))
+// 		});
+// 	} else {
+// 		$.post('/users', newUser).done(renderBearForm);
+// 	}
+// };
+
+// function createOrUpdateBear() {
+// 	var bearOwner = $('input[name="bearName"]').attr('id');
+// 	var bearName = $('input[name="bearName"]').val();
+// 	var bearGender = $('input:radio[name=bearGender]:checked').val();
+	
+// 	var newBear = {
+// 		user_id: bearOwner,
+// 		name: bearName,
+// 		gender: bearGender
+// 	}
+
+// 	if (bearID) {
+// 		$.get('/bears/' + bearID).done(function(bear){
+// 			$.ajax({
+// 				url: '/bears/' + bearID,
+// 				type: 'put',
+// 				data: newBear
+// 			}).done(bearScreenData(bear))
+// 		});
+// 	} else {
+// 		$.post('/bears', newBear).done(function(data){
+// 			var bearID = data.id;
+// 			$.get('/bears/' + bearID).done(bearScreenData);
+// 		});
+// 	}
+	
+// }
+
+// //validates the user, and empties the sign-in form to produce a bear list.
+// function renderSession(currentUser){
+// 	var userID = currentUser.id;
+	
+// 	var bears = currentUser.bears;
+	
+// 	$('#login').empty().append(getBears(bears));
+// };
+
+// function bearBlink(){
+// 	$('.bear').toggleClass('bear_blink');
+// };
+
+// function search(){
+// 	var value = $('input[name="search"]').val();
+// 	console.log(value);
+// 	var newSearch = {
+// 		search: value
+// 	};
+// 	console.log(newSearch);
+// 	$.post('/bings/', newSearch).done(function(searches){
+// 		$('#searches_box').empty();
+// 		console.log(searches.d.results[1].MediaUrl);
+// 		for(var i = 0; i < searches.d.results.length; i++) {
+// 			var searchUrl = searches.d.results[i].MediaUrl;
+// 			if (searchUrl) {
+// 				var searchImage = $('<img>').attr('src', searchUrl).addClass('search_image');
+// 				lastSearch = value;
+// 				$('#searches_box').append(searchImage);
+// 			}	
+// 		}
+// 	});
+// };
+
+// function imageBox(url){
+// 	$('<div>').css('background', 'url(' + url + ')');
+// };
+
+// function fetchMemory(memory){
+// 	console.log(memory);
+// 	var image = $('<img>').attr('src', memory.image_url).addClass('memory_image');
+// 	var keyword = $('<p>').text(memory.keyword).addClass('memory_keyword');
+// 	console.log("fetching memory: " + image);
+// 	var memoryItem = $('<div>').append(image).append(keyword).addClass('container').addClass('memory_item');
+// 	memoryItem.prependTo('#memory_box');
+// };
+
+// function bearFeelingsCounter(bear) {
+// 	var energy = bear.energy;
+// 	var happy = bear.happiness;
+// 	var hunger = bear.hunger;
+// 	var bearBars = $('<ul>').addClass('bear_bar');
+// 	var energyLi = $('<li>');
+// 	var happyLi = $('<li>');
+// 	var hungerLi = $('<li>');
+// 	var energyBar = $('<div>').attr('id', 'energy');
+// 	var happyBar = $('<div>').attr('id', 'happy');
+// 	var hungerBar = $('<div>').attr('id', 'hunger');
+// 	energyLi.append(energyBar);
+// 	happyLi.append(happyBar);
+// 	hungerLi.append(hungerBar);
+// 	bearBars.append(energyLi)
+// 					.append(happyLi)
+// 					.append(hungerLi);
+// 	$('#bars_li').append(bearBars);
+// 	$('#energy').css('height', bear.energy + 'px');
+// 	$('#happy').css('height', bear.happiness + 'px');
+// 	$('#hunger').css('height', bear.hunger + 'px');
+
+// 	setInterval(function(){
+// 		$.ajax({
+// 			url: '/bears/' + bearID + '/automaticscore', 
+// 			type: 'put'
+// 		}).done(renderBearFeelings)
+// 	}, 86000);
+// };
+
+// function renderBearFeelings(bear){
+// 	$('#energy').css('height', bear.energy + 'px');
+// 	$('#happy').css('height', bear.happiness + 'px');
+// 	$('#hunger').css('height', bear.hunger + 'px');
+// };
+
+// function raiseHappy(){
+// 	$.ajax({
+// 			url: '/bears/' + bearID + '/raise_happy', 
+// 			type: 'put'
+// 		}).done(renderBearFeelings);
+// };
+
+// function backgroundColor(user){
+// 	if (user.favorite_color === 'red') {
+// 		$('html').css('background', '#F8BAD1');
+// 	} else if (user.favorite_color === 'yellow') {
+// 		$('html').css('background', 'rgb(251, 241, 115)');
+// 	} else if (user.favorite_color === 'green') {
+// 		$('html').css('background', '#C9E4BF');
+// 	} else {
+// 		$('html').css('background', '#C0DBF3');
+// 	}
+// }

@@ -1,0 +1,29 @@
+Teaching Kids to Search. Teaching Kids to Learn.
+
+== ABOUT THE SITE
+
+The aim of Search Bear is to assist parents in the quest to educate their children. Search Bear is an image search engine for children ages 3-6. Why images? This is the age at which many children learn to read, and Search Bear is designed to help. The parent and child work together to set up an account, and a personalized bear avatar. From there, you are taken inside your bear's cave, and the child discovers that the bear is a lot like him or her; it also wants to learn.
+
+The searched images can be dragged and dropped into the bear's cave, where it will be treasured and stored a long with its keyword. This comes in handy later for lessons in word association.
+
+== ABOUT THE BEAR
+
+Each bear comes with 100% happiness, hunger, and energy. To keep those counts up, the bear needs to learn, eat, and sleep.
+
+== ABOUT THE SETUP
+
+- Ruby 2.1.2
+- Rails 4.1.7
+- JQuery
+- CSS3
+- HTML 5
+- HTTParty
+- BCrypt
+- Rails_12Factor
+- Bing Search API
+- Fullpage.js - Used to Create the Panning between pages.
+
+== ERD LINK
+
+http://postimg.org/image/qrlfilvtd/
+http://s24.postimg.org/9eb53r0id/search_bear_erd_01.png

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <title>Search Bear</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+	<!-- <div id="login" class="container">
+		<h3>Welcome!</h3> -->
+		
+		
+	
+	
+	<!-- page layout -->
+	<div class="container-fluid">
+
+    <div class="row">
+      <div class="col-xs-12 col-md-12" style="background: lightgreen">
+          <h1>Search Bear</h1>
+      </div>
+      <div class="col-xs-12 col-sm-7 col-md-8" id="bear_land">
+        <div class="col-xs-12 col-md-12" style="background: lightblue">
+					<!-- start: login form -->
+				  <form id="s_form">
+						<h4>Log In</h4>
+						<div class="form-group">
+							<label for="email">Email address</label>
+							<input type="text" class="form-control" id="email" name="email" placeholder="email@you.com">
+						</div>
+						<div class="form-group">
+							<label for="password">password</label>
+							<input type="password" name="password" class="form-control" id="password" placeholder="happy">
+						</div>
+						<button id="login_submit" class="btn btn-default">submit</button>
+						<h4>Join</h4>
+						<button id="sign_up" class="btn btn-default">sign up</button>
+					</form>
+					<!-- end: login form -->
+
+					<!-- start: bear image and chat -->
+        	<div id="bear_box">
+        		<p>Bear info goes here</p>
+        	</div>
+        	<!-- end: bear image and chat -->
+        </div>
+
+        <div class="col-xs-12 col-md-12" style="background: pink">Bear Stats</div>
+        <div class="col-xs-12 col-md-12" style="background: yellow">Search Bar</div>
+      </div>
+      <div class="col-xs-12 col-sm-5 col-md-4" >
+        <div class="col-xs-12 col-sm-12 col-md-12" style="background: lightgreen"> Search Zone
+        </div>  
+      </div>
+    </div>
+  </div>
+
+
+
+
+	<span class="clearfix"></span>
+	<div id="left_cave_wall">
+	<div id="right_cave_wall">
+	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+</body>
+</html>
