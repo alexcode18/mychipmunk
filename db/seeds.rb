@@ -16,12 +16,21 @@ i = 0
 while i < 20 do
 
 	user = User.new()
+<<<<<<< HEAD
 	user.email = Faker::Internet.email()
 	user.password = 'happy'
 	user.password_confirmation = 'happy'
 	user.color = ['red','yellow','green','blue'].sample
 	user.interest = ['sports','art','transportation','technology','science','world news','celebrity gossip'].sample
 	user.bear_id = i + 1
+=======
+	user.parent_email = Faker::Internet.email()
+	user.password = "happy"
+	user.password_confirmation = "happy"
+	user.child_name = Faker::Name.first_name()
+	user.child_gender = ["M", "F"].sample
+	user.favorite_color = ["red", "yellow", "green", "blue"].sample
+>>>>>>> b1e38a9611a04a7bd0969368249747aa5c26e9f7
 	user.save()
 
 	bear = Bear.new()
@@ -30,7 +39,11 @@ while i < 20 do
 	bear.hunger = 100
 	bear.happiness = 100
 	bear.energy = 100
+<<<<<<< HEAD
 	bear.user_id = i + 1
+=======
+	bear.user_id = i
+>>>>>>> b1e38a9611a04a7bd0969368249747aa5c26e9f7
 	bear.save()
 
 	i += 1

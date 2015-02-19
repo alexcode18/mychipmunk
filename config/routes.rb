@@ -3,7 +3,13 @@ Rails.application.routes.draw do
   root 'application#index'
   resources :bears, only: [:index, :show, :create, :update, :destroy]
   resources :users, only: [:index, :show, :create, :update, :destroy]
+<<<<<<< HEAD
 
+=======
+  resources :searches, only: [:index, :show, :create, :update, :destroy]
+  resources :memories, only: [:index, :show, :create, :update, :destroy]
+  resources :bings
+>>>>>>> b1e38a9611a04a7bd0969368249747aa5c26e9f7
   put 'bears/:id/automaticscore' => 'bears#automaticscore', as: 'autoscore'
   put 'bears/:id/raise_happy' => 'bears#raise_happy', as: 'raise_happy'
   put 'bears/:id/raise_health' => 'bears#raise_health', as: 'raise_health'
@@ -11,6 +17,7 @@ Rails.application.routes.draw do
   get 'sessions/new' => 'sessions#new', as: 'login'
   post 'sessions' => 'sessions#create'
   delete 'sessions' => 'sessions#destroy'
+<<<<<<< HEAD
 
   match 'login'  => 'sessions#new', :via => :get
   match 'logout' => 'sessions#destroy', :via => [:get, :delete]
@@ -18,6 +25,8 @@ Rails.application.routes.draw do
  
   resource :session, :only => [:new, :create, :destroy]
   resource :account, :controller => 'users', :except => [:index, :destroy, :show, :edit]
+=======
+>>>>>>> b1e38a9611a04a7bd0969368249747aa5c26e9f7
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

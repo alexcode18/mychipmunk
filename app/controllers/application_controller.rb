@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+<<<<<<< HEAD
   helper_method :current_user
 
   def index
@@ -37,5 +38,19 @@ class ApplicationController < ActionController::Base
  
   def destroy_user_session
     session[:user_id] = nil
+=======
+  helper_method :authenticate, :current_user, :logged_in?
+
+  def index
+  	render layout: 'application', text: ''
+  end
+
+  def authenticate
+  	redirect_to root_path unless session[:current_user_id]
+  end
+
+  def logged_in?
+  	:current_user_id != nil
+>>>>>>> b1e38a9611a04a7bd0969368249747aa5c26e9f7
   end
 end

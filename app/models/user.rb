@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+<<<<<<< HEAD
 	has_one :bear,  dependent: :destroy
 	
 	validates_presence_of :email
@@ -16,4 +17,12 @@ class User < ActiveRecord::Base
     self.password_digest = BCrypt::Password.create(pass)
   end
 
+=======
+	has_many :bears,  dependent: :destroy
+	has_many :searches, dependent: :destroy
+	
+	validates_presence_of :parent_email, :child_name, :favorite_color
+	validates_uniqueness_of :parent_email
+	has_secure_password
+>>>>>>> b1e38a9611a04a7bd0969368249747aa5c26e9f7
 end

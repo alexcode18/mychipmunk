@@ -7,7 +7,12 @@ group :development do
   gem 'shoulda-matchers', require: false
 end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+<<<<<<< HEAD
 gem 'rails', '4.1.8'
+=======
+gem 'rails', '4.1.7'
+
+>>>>>>> b1e38a9611a04a7bd0969368249747aa5c26e9f7
 # Use postgresql as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
@@ -30,6 +35,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
+<<<<<<< HEAD
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
@@ -39,6 +45,14 @@ gem 'backbars'
 gem 'httparty'
 gem 'ffaker'
 gem 'rails_12factor'
+=======
+gem 'ffaker'
+gem 'pry-rails', :group => :development
+gem 'httparty'
+# Use ActiveModel has_secure_password
+gem 'bcrypt', '~> 3.1.7'
+gem 'rails_12factor' #tells heroku how to find assets
+>>>>>>> b1e38a9611a04a7bd0969368249747aa5c26e9f7
 # Use unicorn as the app server
 # gem 'unicorn'
 
@@ -46,6 +60,11 @@ gem 'rails_12factor'
 # gem 'capistrano-rails', group: :development
 
 # Use debugger
+<<<<<<< HEAD
 # gem 'debugger', group: [:development, :test]
 gem "rails-assets-underscore", source: "https://rails-assets.org"
 gem "rails-assets-backbone", source: "https://rails-assets.org"
+=======
+#gem 'debugger', group: [:development, :test]
+
+>>>>>>> b1e38a9611a04a7bd0969368249747aa5c26e9f7

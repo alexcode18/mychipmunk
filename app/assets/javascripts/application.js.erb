@@ -2,7 +2,11 @@
 // listed below.
 //
 // Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
+<<<<<<< HEAD
 // or any plugin's vendor/assets/javascripts directory can be referenced here using a relative path.
+=======
+// or vendor/assets/javascripts of plugins, if any, can be referenced here using a relative path.
+>>>>>>> b1e38a9611a04a7bd0969368249747aa5c26e9f7
 //
 // It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
 // compiled file.
@@ -13,6 +17,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+<<<<<<< HEAD
 //= require underscore
 //= require backbone
 //= require handlebars
@@ -45,12 +50,63 @@ $(function(){
 	// })
 });
 
+=======
+//= require_tree .
+var bearID;
+var lastSearch;
+
+$(function(){
+	$('body').on('click', '#sign_up', renderEditOrSignUp);
+	$('body').on('click', '#signup_button', createOrUpdateUser);
+	$('body').on('click', '#submit_bear', createOrUpdateBear);
+	$('body').on('click', '#login_submit', fetchUserData);
+	$('body').on('click', '.getBearButton', renderBearScreen);
+	$('body').on('click', '#search_button', search);
+	$('body').on('click', '#search_button', search);
+	$('body').on('click', '#add_happy', raiseHappy);
+
+	$('body').on('keypress',function(){
+		var keyCode = (event.keyCode ? event.keyCode : event.which);
+		if(keyCode == '13' && $('#sign_up').css('display') == 'inline-block'){
+			alert('Enter key is pressed!');
+		}
+	})
+
+	$('body').on('mouseenter', '.search_image', searchImageDraggable);
+});
+
+function fetchUserData() {
+	var password = $('input[name="login_password"]').val();
+	var email = $('input[name="login_email"]').val();
+
+	var newSession = {
+		parent_email: email,
+		password: password
+	};
+
+	$.post('/sessions', newSession).done(function(data){
+		if (data.id) {
+			renderSession(data);
+		}
+		// } else {
+		// 	var fade_flash = function() {
+		//     $("#flash_notice").delay(5000).fadeOut("slow");
+		//     $("#flash_alert").delay(5000).fadeOut("slow");
+		//     $("#flash_error").delay(5000).fadeOut("slow");
+		// 	};
+		// 	$('#login').prepend(fade_flash());
+		// }
+	});
+};
+
+>>>>>>> b1e38a9611a04a7bd0969368249747aa5c26e9f7
 function renderErrors(errors){
 	for (var i = 0; i < errors.length; i++){
 		var error = $('<p>').text(i).prependTo('#login').css('color', 'red');
 	}
 };
 
+<<<<<<< HEAD
 // function createOrUpdateUser(){
 // 	var email = $('input[name="signup_email"]').val();
 // 	var password = $('input[name="signup_password"]').val();
@@ -211,3 +267,454 @@ function renderErrors(errors){
 // 		$('html').css('background', '#C0DBF3');
 // 	}
 // }
+=======
+function renderEditOrSignUp(){
+	$('#login').empty().css('display', 'inline');
+	var newUserHeader = $('<h3>').text('Sign Up!');
+	
+	var emailLabel = $('<label>').text('email');
+	var email = $('<input>').attr('type', 'text').attr('name', 'signup_email');
+
+	var passwordLabel = $('<label>').text('password');
+	var password = $('<input>').attr('type', 'password').attr('name', 'signup_password');
+
+	var passwordConfLabel = $('<label>').text('confirm password');
+	var passwordConf = $('<input>').attr('type', 'password').attr('name', 'signup_confirmation');
+
+	var childNameLabel = $('<label>').text('child\'s nickname (for bear)');
+	var childName = $('<input>').attr('type', 'text').attr('name', 'childName');
+
+	var childGenderLabel = $('<h4>').text('child\'s gender');
+	var boyLabel = $('<label for="boy">').text('boy');
+	var boy = $('<input type="radio">').attr('name', 'childGender').val('M').attr('id', 'boy');
+	var girlLabel = $('<label for="girl">').text('girl');
+	var girl = $('<input type="radio">').attr('name', 'childGender').val('F').attr('id', 'girl');
+
+	var favColorLabel = $('<h4>').text('favorite color');
+	var redLabel = $('<label for="red">').text('red');
+	var red = $('<input type="radio">').attr('name', 'childFavColor').val('red').attr('id', 'red');
+
+	var yellowLabel = $('<label for="yellow">').text('yellow');
+	var yellow = $('<input type="radio">').attr('name', 'childFavColor').val('yellow').attr('id', 'yellow');
+
+	var greenLabel = $('<label for="green">').text('green');
+	var green = $('<input type="radio">').attr('name', 'childFavColor').val('green').attr('id', 'green');
+	
+	var blueLabel = $('<label for="blue">').text('blue');
+	var blue = $('<input type="radio">').attr('name', 'childFavColor').val('blue').attr('id', 'blue');
+	
+
+	var submitSignUp = $('<button>').attr('id', 'signup_button').text('create your bear!');
+	var submitEdit = $('<button>').attr('id', 'edit_user_form_button').text('save');
+
+	var supportInfo = $('<p>').text('Your information will not be shared with any outside sources');
+
+	if (bearID) {
+		$.get('/bears/' + bearID).done(function(bear){
+			email.val(bear.user.parent_email);
+			childName.val(bear.user.child_name);
+			$('input[name=childGender][value=' + bear.user.child_gender + ']').prop('checked', true);
+			$('input[name=childFavColor][value=' + bear.user.favorite_color + ']').prop('checked', true);
+		});
+	}
+
+	$('#login').append(newUserHeader)
+							.append(emailLabel)
+							.append(email).append('<br>')
+							.append(passwordLabel)
+							.append(password).append('<br>')
+							.append(passwordConfLabel)
+							.append(passwordConf).append('<br>')
+							.append(childNameLabel)
+							.append(childName).append('<br>')
+							.append(childGenderLabel).append('<br>')
+							.append(boyLabel)
+							.append(boy).append('<br>')
+							.append(girlLabel)
+							.append(girl).append('<br>')
+							.append(favColorLabel).append('<br>')
+							.append(redLabel)
+							.append(red).append('<br>')
+							.append(yellowLabel)
+							.append(yellow).append('<br>')
+							.append(greenLabel)
+							.append(green).append('<br>')
+							.append(blueLabel)
+							.append(blue).append('<br>')
+
+							if (bearID) {
+								$('#login').append(submitEdit);
+							} else {
+								$('#login').append(submitSignUp).append('<br>')
+														.append(supportInfo);
+							}
+							
+};
+
+function createOrUpdateUser(){
+	var email = $('input[name="signup_email"]').val();
+	var password = $('input[name="signup_password"]').val();
+	var passwordConf = $('input[name="signup_confirmation"]').val();
+	var childName = $('input[name="childName"]').val();
+	var childGender = $('input:radio[name=childGender]:checked').val();
+	var favColor = $('input:radio[name="childFavColor"]:checked').val();
+	
+	var newUser = {
+		parent_email: email,
+		password: password,
+		password_confirmation: passwordConf,
+		child_name: childName,
+		child_gender: childGender,
+		favorite_color: favColor
+	};
+
+	if (bearID) {
+		$.get('/bears/' + bearID).done(function(bear){
+			var userID = bear.user.id;
+			$.ajax({
+				url: '/users/' + userID,
+				type: 'put',
+				data: newUser
+			}).done(bearScreenData(bear))
+		});
+	} else {
+		$.post('/users', newUser).done(renderBearForm);
+	}
+};
+
+function renderBearForm(currentUser){
+	var bearOwner;
+	var bearX;
+	if (currentUser === bearID) {
+		$.get('/bears/' + bearID).done(function(bear){
+			bearOwner = bear.user.id;
+			bearX = bear;
+		});
+	} else {
+		bearOwner = currentUser.id;
+	}
+	
+	$('#login').empty().css('display', 'inline');
+	
+	var bearNameLabel = $('<label for="bearName">').attr('name', 'bearName').text('Name your bear!');
+	var bearName = $('<input>').attr('name', 'bearName').attr('id', bearOwner);
+	var bearGenderLabel = $('<h4>').text('bear\'s gender');
+	var boyLabel = $('<label for="boy">').text('boy');
+	var boy = $('<input type="radio">').attr('name', 'bearGender').val('M').attr('id', 'boy');
+	var girlLabel = $('<label for="girl">').text('girl');
+	var girl = $('<input type="radio">').attr('name', 'bearGender').val('F').attr('id', 'girl');
+	var submitBear = $('<button>').attr('id', 'submit_bear').text('submit');
+	
+	// if (bearID) {
+	// 	$('input[name=gender][value=' + bearX.gender + ']').prop('checked', true);
+	// }
+
+	$('#login').empty()
+							.append(bearNameLabel).append('<br>')
+							.append(bearName).append('<br>')
+							.append(bearGenderLabel).append('<br>')
+							.append(boyLabel)
+							.append(boy).append('<br>')
+							.append(girlLabel)
+							.append(girl).append('<br>')
+							.append(submitBear);
+};
+
+function createOrUpdateBear() {
+	var bearOwner = $('input[name="bearName"]').attr('id');
+	var bearName = $('input[name="bearName"]').val();
+	var bearGender = $('input:radio[name=bearGender]:checked').val();
+	
+	var newBear = {
+		user_id: bearOwner,
+		name: bearName,
+		gender: bearGender
+	}
+
+	if (bearID) {
+		$.get('/bears/' + bearID).done(function(bear){
+			$.ajax({
+				url: '/bears/' + bearID,
+				type: 'put',
+				data: newBear
+			}).done(bearScreenData(bear))
+		});
+	} else {
+		$.post('/bears', newBear).done(function(data){
+			var bearID = data.id;
+			$.get('/bears/' + bearID).done(bearScreenData);
+		});
+	}
+	
+}
+
+//validates the user, and empties the sign-in form to produce a bear list.
+function renderSession(currentUser){
+	var userID = currentUser.id;
+	
+	var bears = currentUser.bears;
+	
+	$('#login').empty().append(getBears(bears));
+};
+
+//displays a list of all a user's bears
+function getBears(bears){
+	var bearList = [];
+	for (var i = 0; i < bears.length; i++) {
+
+		var name = bears[i].name;
+		console.log(name);
+		var id = bears[i].id;
+		var bearButton = $('<button>').text(name)
+																	.addClass('getBearButton')
+																	.data('id', id);
+		$(bearButton).appendTo('#login');
+	}
+};
+
+//grabs the data of a specific user bear.
+function renderBearScreen() {
+	bearID = $(this).data('id');
+	$.get('/bears/' + bearID).done(bearScreenData);
+};
+
+//display all properties associated with the bear
+function bearScreenData(bear) {
+	$('#login').css('display', 'none');
+
+	if ($(document).has('#fullpage')) {
+		$('#fullpage').remove();
+		console.log('refreshing');
+	}
+
+	var fullpage = $('<div>').attr('id', 'fullpage');
+	var userName = bear.user.child_name;
+	var bearName = bear.name;
+	var bearImage = $('<div>').addClass('bear');
+	var talkDiv = $('<div>').text('Hi, ' + userName + '! My name is ' + bearName + '.').addClass('container').addClass('bear_talk');
+	var favoriteColor = bear.user.favorite_color;
+	var happyButton = $('<button>').text('Add Happy').attr('id', 'add_happy');
+	//gather the bear's memories
+	var bearMemories = bear.memories;
+	var slidingPane = $('<div>').attr('id', 'fullpage');
+	var bearSection = $('<div>').addClass('section');
+	var bearSlide = $('<div>').addClass('slide').attr('id', 'slide1');
+	var memorySlide = $('<div>').addClass('slide').attr('id', 'slide2');
+	var bearLand = $('<div>').attr('id',  'bear_land');
+	var bearUl = $('<ul id="bear_ul">');
+	var barsLi = $('<li id="bars_li">');
+	var bearLi = $('<li id="bear_li">');
+	var talkLi = $('<li id="talk_li">');
+	var boxLi = $('<li id="box_li">');
+	var memoryDrop = $('<div>').attr('id', 'memory_drop');
+	var bearSlideInfo = '<div id="search_zone"><div id="search_bar"><label id="search_bar_label">search</label><input type="text" name="search" placeholder="find an image, drag to bear, click right"><button id="search_button">search</button></div><div id="searches_box"></div></div><span class="clearfix"></span>';
+	var memoryBox = $('<div id="memory_box">');
+	bearLi.append(bearImage);
+	talkLi.append(talkDiv);
+	boxLi.append(memoryDrop);
+	bearUl.append(barsLi).append(bearLi).append(talkLi).append(boxLi);
+	bearLand.append(bearUl);
+	bearSlide.append(bearLand).append(bearSlideInfo);
+	memorySlide.append(memoryBox);
+	bearSection.append(bearSlide).append(memorySlide);
+	fullpage.append(bearSection);
+	
+	backgroundColor(bear.user);
+
+	$('body').append(fullpage);
+	$('#fullpage').fullpage({
+		//Navigation
+    menu: false,
+    anchors:['firstSlide', 'secondSlide'],
+    navigation: false,
+    navigationPosition: 'right',
+    navigationTooltips: ['firstSlide', 'secondSlide'],
+    slidesNavigation: true,
+    slidesNavPosition: 'bottom',
+
+    //Scrolling
+    css3: true,
+    scrollingSpeed: 700,
+    autoScrolling: true,
+    scrollBar: false,
+    easing: 'easeInQuart',
+    easingcss3: 'ease',
+    loopBottom: false,
+    loopTop: false,
+    loopHorizontal: true,
+    continuousVertical: false,
+    normalScrollElements: '#element1, .element2',
+    scrollOverflow: false,
+    touchSensitivity: 15,
+    normalScrollElementTouchThreshold: 5,
+
+    //Accessibility
+    keyboardScrolling: true,
+    animateAnchor: true,
+
+    //Design
+    controlArrows: true,
+    verticalCentered: true,
+    resize : true,
+    // sectionsColor : ['#ccc', '#fff'],
+    paddingTop: '10px',
+    paddingBottom: '10px',
+    fixedElements: '#header, .footer',
+    responsive: 0,
+
+    //Custom selectors
+    sectionSelector: '.section',
+    slideSelector: '.slide'
+	});
+
+	bearMemories.forEach(fetchMemory);
+	bearFeelingsCounter(bear);
+
+	setInterval(bearBlink, 4000);
+
+	$('body').on('click', '#edit_user_button', renderEditOrSignUp);
+	$('body').on('click', '#edit_user_form_button', createOrUpdateUser);
+
+	// $('body').on('click', '#edit_bear_button', renderBearForm(bearID));
+
+	$('#memory_drop').droppable({
+		accept: '.search_image',
+		hoverClass: 'red',
+		drop: function(event, ui) {
+			var drg = ui.helper;
+			moveImageToMemory(drg);
+			raiseHappy();
+		}
+	});
+};
+
+function bearBlink(){
+	$('.bear').toggleClass('bear_blink');
+};
+
+function search(){
+	var value = $('input[name="search"]').val();
+	console.log(value);
+	var newSearch = {
+		search: value
+	};
+	console.log(newSearch);
+	$.post('/bings/', newSearch).done(function(searches){
+		$('#searches_box').empty();
+		console.log(searches.d.results[1].MediaUrl);
+		for(var i = 0; i < searches.d.results.length; i++) {
+			var searchUrl = searches.d.results[i].MediaUrl;
+			if (searchUrl) {
+				var searchImage = $('<img>').attr('src', searchUrl).addClass('search_image');
+				lastSearch = value;
+				$('#searches_box').append(searchImage);
+			}	
+		}
+	});
+};
+
+function imageBox(url){
+	$('<div>').css('background', 'url(' + url + ')');
+};
+
+function searchImageDraggable(){
+	$(this).draggable({
+		helper: 'clone'
+	});
+};
+
+function searchImagePosition(){
+	$(this).css('position', 'fixed');
+};
+
+function mouseLeaveSearchImage(){
+	$('.move_to_bear').remove();
+};
+
+function moveImageToMemory(clone){
+	var url = clone.attr('src');
+	var newMemory = {
+		bear_id: bearID,
+		keyword: lastSearch,
+		image_url: url
+	};
+
+	$.post('/memories/', newMemory).done(function(data){
+		fetchMemory(data);
+		raiseHappy;
+	});
+};
+
+function fetchMemory(memory){
+	console.log(memory);
+	var image = $('<img>').attr('src', memory.image_url).addClass('memory_image');
+	var keyword = $('<p>').text(memory.keyword).addClass('memory_keyword');
+	console.log("fetching memory: " + image);
+	var memoryItem = $('<div>').append(image).append(keyword).addClass('container').addClass('memory_item');
+	memoryItem.prependTo('#memory_box');
+};
+
+
+// function changeColor(x,y){
+//   var hue = x / parseInt($(window).width()) * 360;
+//   var saturation = ",100%,"
+//   var lightness = y / parseInt($(window).height()) * 100;
+//   var hsl = "hsl("+hue+saturation+lightness+"%)";
+//   return hsl;
+// };
+
+function bearFeelingsCounter(bear) {
+	var energy = bear.energy;
+	var happy = bear.happiness;
+	var hunger = bear.hunger;
+	var bearBars = $('<ul>').addClass('bear_bar');
+	var energyLi = $('<li>');
+	var happyLi = $('<li>');
+	var hungerLi = $('<li>');
+	var energyBar = $('<div>').attr('id', 'energy');
+	var happyBar = $('<div>').attr('id', 'happy');
+	var hungerBar = $('<div>').attr('id', 'hunger');
+	energyLi.append(energyBar);
+	happyLi.append(happyBar);
+	hungerLi.append(hungerBar);
+	bearBars.append(energyLi)
+					.append(happyLi)
+					.append(hungerLi);
+	$('#bars_li').append(bearBars);
+	$('#energy').css('height', bear.energy + 'px');
+	$('#happy').css('height', bear.happiness + 'px');
+	$('#hunger').css('height', bear.hunger + 'px');
+
+	setInterval(function(){
+		$.ajax({
+			url: '/bears/' + bearID + '/automaticscore', 
+			type: 'put'
+		}).done(renderBearFeelings)
+	}, 86000);
+};
+
+function renderBearFeelings(bear){
+	$('#energy').css('height', bear.energy + 'px');
+	$('#happy').css('height', bear.happiness + 'px');
+	$('#hunger').css('height', bear.hunger + 'px');
+};
+
+function raiseHappy(){
+	$.ajax({
+			url: '/bears/' + bearID + '/raise_happy', 
+			type: 'put'
+		}).done(renderBearFeelings);
+};
+
+function backgroundColor(user){
+	if (user.favorite_color === 'red') {
+		$('html').css('background', '#F8BAD1');
+	} else if (user.favorite_color === 'yellow') {
+		$('html').css('background', 'rgb(251, 241, 115)');
+	} else if (user.favorite_color === 'green') {
+		$('html').css('background', '#C9E4BF');
+	} else {
+		$('html').css('background', '#C0DBF3');
+	}
+}
+>>>>>>> b1e38a9611a04a7bd0969368249747aa5c26e9f7
