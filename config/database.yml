@@ -24,11 +24,8 @@ default: &default
 
 development:
   <<: *default
-<<<<<<< HEAD
   database: search_bear_v2_development
-=======
-  database: search_bear_development
->>>>>>> b1e38a9611a04a7bd0969368249747aa5c26e9f7
+
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -62,11 +59,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-<<<<<<< HEAD
   database: search_bear_v2_test
-=======
-  database: search_bear_test
->>>>>>> b1e38a9611a04a7bd0969368249747aa5c26e9f7
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -89,12 +82,6 @@ test:
 #
 production:
   <<: *default
-<<<<<<< HEAD
   database: search_bear_v2_production
   username: search_bear_v2
   password: <%= ENV['SEARCH_BEAR_V2_DATABASE_PASSWORD'] %>
-=======
-  database: search_bear_production
-  username: search_bear
-  password: <%= ENV['SEARCH_BEAR_DATABASE_PASSWORD'] %>
->>>>>>> b1e38a9611a04a7bd0969368249747aa5c26e9f7
