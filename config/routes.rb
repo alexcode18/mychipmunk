@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'application#index'
+  root to: 'application#index'
   resources :bears, only: [:index, :show, :create, :update, :destroy]
   resources :users, only: [:index, :show, :create, :update, :destroy]
 
@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   put 'bears/:id/raise_energy' => 'bears#raise_energy', as: 'raise_energy'
   
   # Sessions Paths for login.
-  post 'sessions' => 'sessions#create'
+  post 'sessions/:id' => 'sessions#create'
   delete 'sessions' => 'sessions#destroy'
 
   # The priority is based upon order of creation: first created -> highest priority.
