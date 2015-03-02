@@ -6,11 +6,8 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-<<<<<<< HEAD
 module SearchBear_v2
-=======
-module SearchBear
->>>>>>> b1e38a9611a04a7bd0969368249747aa5c26e9f7
+
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers

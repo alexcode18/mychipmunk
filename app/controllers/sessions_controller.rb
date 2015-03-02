@@ -1,10 +1,10 @@
 class SessionsController < ApplicationController
 
   def create
-    user = User.find_by(parent_email: params[:parent_email])
-    if user && user.authenticate(params[:password])
-      session[:current_user_id] = user.id
-      render json: user.to_json(:include => :bear)
+    @user = User.find_by(email: params[:email])
+    if @user && @user.authenticate(params[:password])
+      session[:current_user_id] = @user.id
+      redirect to root_path
     else
       render json: {error: "We're beary sorry. We can't find that email or password."}
     end

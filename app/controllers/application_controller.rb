@@ -4,7 +4,11 @@ class ApplicationController < ActionController::Base
 
   helper_method :authenticate
 
+  def index
+  	render layout: 'application', text: ''
+  end
+
   def authenticate
-    redirect_to login_path unless session[:current_user_id]
+    	redirect_to root_path unless session[:current_user_id]
   end
 end
