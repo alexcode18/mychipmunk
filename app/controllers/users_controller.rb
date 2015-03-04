@@ -1,7 +1,5 @@
 class UsersController < ApplicationController
 
-	# before_action :authenticate, except: [:create ]
-
 	def index
 		@users = User.all
 		render json: @users
@@ -31,13 +29,6 @@ class UsersController < ApplicationController
     end
   end
 
-t.string :email
-    	t.string :password_digest
-        t.string :interest
-    	t.string :color
-        t.references :bear
-
-
   def update
   	@user = User.find(params[:id])
   	@user.email = params[:email]
@@ -65,6 +56,6 @@ t.string :email
 	private
 
 	def user_params
-		params.require(:user).permit(:email, :password, :password_confirmation, :interest, :color)
+		params.require(:user).permit(:password, :password_confirmation, :interest, :color)
 	end
 end
