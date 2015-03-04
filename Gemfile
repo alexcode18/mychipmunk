@@ -6,9 +6,8 @@ group :development do
   gem 'shoulda-matchers', require: false
 end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-
-gem 'rails', '4.1.8'
-
+gem 'rails', '4.2.0'
+# gem 'railties', '4.2.0'
 # Use postgresql as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
@@ -30,8 +29,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',       group: :doc
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-gem 'spring',        group: :development
-
+gem 'spring', '~> 1.3.2',        group: :development
+gem 'devise'
 gem 'ffaker'
 gem 'pry-rails', :group => :development
 gem 'httparty'
@@ -46,7 +45,7 @@ gem 'rails_12factor' #tells heroku how to find assets
 # gem 'capistrano-rails', group: :development
 
 # Use debugger
-gem 'byebug', group: :development
+# gem 'debugger', group: [:development, :test]
 gem "rails-assets-underscore", source: "https://rails-assets.org"
 gem "rails-assets-backbone", source: "https://rails-assets.org"
 

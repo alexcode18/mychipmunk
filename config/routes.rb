@@ -1,17 +1,25 @@
 Rails.application.routes.draw do
-
-  root to: 'application#index'
   resources :bears, only: [:index, :show, :create, :update, :destroy]
-  resources :users, only: [:index, :show, :create, :update, :destroy]
+  # resources :users, only: [:index, :show, :create, :update, :destroy]
+  root to: 'bears#index'
+  devise_for :users
+  # , :controllers => { registrations: 'users/registrations' }
 
-  put 'bears/:id/automaticscore' => 'bears#automaticscore', as: 'autoscore'
-  put 'bears/:id/raise_happy' => 'bears#raise_happy', as: 'raise_happy'
-  put 'bears/:id/raise_health' => 'bears#raise_health', as: 'raise_health'
-  put 'bears/:id/raise_energy' => 'bears#raise_energy', as: 'raise_energy'
+# Rails.application.routes.draw do
+
+#   devise_for :users
+#   root to: 'application#index'
+#   resources :bears, only: [:index, :show, :create, :update, :destroy]
+#   resources :users, only: [:index, :show, :create, :update, :destroy]
+
+#   put 'bears/:id/automaticscore' => 'bears#automaticscore', as: 'autoscore'
+#   put 'bears/:id/raise_happy' => 'bears#raise_happy', as: 'raise_happy'
+#   put 'bears/:id/raise_health' => 'bears#raise_health', as: 'raise_health'
+#   put 'bears/:id/raise_energy' => 'bears#raise_energy', as: 'raise_energy'
   
   # Sessions Paths for login.
-  post 'sessions/:id' => 'sessions#create'
-  delete 'sessions' => 'sessions#destroy'
+  # post 'sessions/:id' => 'sessions#create'
+  # delete 'sessions' => 'sessions#destroy'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
