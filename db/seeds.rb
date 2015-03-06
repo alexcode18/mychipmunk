@@ -17,8 +17,7 @@ while i < 20 do
 
 	user = User.new()
 	user.email = Faker::Internet.email()
-	user.password = 'happy'
-	user.password_confirmation = 'happy'
+	user.password = 'happyhappy'
 	user.color = ['red','yellow','green','blue'].sample
 	user.interest = ['sports','art','transportation','technology','science','world news','celebrity gossip'].sample
 	user.bear_id = i + 1

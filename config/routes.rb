@@ -1,12 +1,11 @@
 Rails.application.routes.draw do
   resources :bears, only: [:index, :show, :create, :update, :destroy]
   # resources :users, only: [:index, :show, :create, :update, :destroy]
-  root to: 'bears#index'
+  root to: 'application#index'
   devise_for :users
   # , :controllers => { registrations: 'users/registrations' }
 
 # Rails.application.routes.draw do
-
 #   devise_for :users
 #   root to: 'application#index'
 #   resources :bears, only: [:index, :show, :create, :update, :destroy]
