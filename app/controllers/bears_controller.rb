@@ -8,50 +8,39 @@ class BearsController < ApplicationController
 	end
 
 	def show
-		# @bear = Bear.find(params[:id])
-		# render json: @bear.to_json(include: :user)
+		@bear = Bear.find(params[:id])
+		render json: @bear.to_json(include: :user)
 	end
 
 	def create
-		# @bear = Bear.new()
-		# @bear.user_id = params[:user_id]
-		# @bear.name = params[:name]
-		# @bear.gender = params[:gender]
-		# @bear.hunger = 100
-		# @bear.happiness = 100
-		# @bear.energy = 100
+		@bear = Bear.new()
+		@bear.user_id = params[:user_id]
+		@bear.name = params[:name]
+		@bear.gender = params[:gender]
+		@bear.hunger = 100
+		@bear.happiness = 100
+		@bear.energy = 100
 
-		# if @bear.save()
-		# 	render json: @bear
-		# end
+		if @bear.save()
+			render json: @bear.to_json(include: :user)
+		end
 	end
 
 	def edit
 	end
 
 	def update
+		@bear = Bear.find(params[:id])
+		@bear.hunger = params[:hunger]
+		@bear.happiness = params[:happiness]
+		@bear.energy = params[:energy]
+
+		if @bear.save()
+			render json: @bear.to_json(include: :user)
+		end
 	end
 
 	def destroy
-	end
-
-	def automaticscore
-		# @bear = Bear.find(params[:id])
-
-		# if @bear.energy > 5
-		# 	@bear.energy -= 1
-		# end
-
-		# if @bear.happiness > 5
-		# 	@bear.happiness -= 1
-		# end
-
-		# if @bear.hunger > 5
-		# 	@bear.hunger -= 1
-		# end
-		
-		# @bear.save()
-		# render json: @bear
 	end
 
 	def raise_happy
