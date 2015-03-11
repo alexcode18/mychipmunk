@@ -11,10 +11,10 @@ Rails.application.routes.draw do
 #   resources :bears, only: [:index, :show, :create, :update, :destroy]
 #   resources :users, only: [:index, :show, :create, :update, :destroy]
 
-#   put 'bears/:id/automaticscore' => 'bears#automaticscore', as: 'autoscore'
-#   put 'bears/:id/raise_happy' => 'bears#raise_happy', as: 'raise_happy'
-#   put 'bears/:id/raise_health' => 'bears#raise_health', as: 'raise_health'
-#   put 'bears/:id/raise_energy' => 'bears#raise_energy', as: 'raise_energy'
+  put 'bears/:id/automaticscore' => 'bears#automaticscore', as: 'autoscore'
+  put 'bears/:id/raise_happy' => 'bears#raise_happy', as: 'raise_happy'
+  put 'bears/:id/raise_health' => 'bears#raise_health', as: 'raise_health'
+  put 'bears/:id/raise_energy' => 'bears#raise_energy', as: 'raise_energy'
   
   # Sessions Paths for login.
   # post 'sessions/:id' => 'sessions#create'

@@ -14,7 +14,7 @@
  *= require_self
  */
 
-@import url(https://fonts.googleapis.com/css?family=Raleway:400,500,600,700);
+/*@import url(https://fonts.googleapis.com/css?family=Raleway:400,500,600,700);*/
 
 .clearfix:after {
     content: ".";
@@ -34,36 +34,34 @@
 html {
 	font-family: 'Raleway', Arial;
 	font-weight: 500;
-	letter-spacing: 3px;
-	background: #C0DBF3;
-	color: grey;
+	letter-spacing: 2px;
+	background: /*#C0DBF3*/ #0c91c9;
+}
+
+body {
+	background: none;
+	color: lightgrey;
 }
 
 img {
 	height: 300px;
 }
 
-header {
-	padding: 15px;
-	font-size: 16pt;
-	position: fixed;
-	top: 0px;
-	left: 0px;
-	width:100%;
-	z-index: 5;
+.header {
+	padding: 15px 25px;
 }
 
-header li {
+#header_list li{
 	display: inline-block;
 }
 
-header a {
-	cursor: pointer;
+#header_list li:nth-child(2),
+#header_list li:nth-child(3) {
+	float: right;
 }
 
 #left_cave_wall,
-#right_cave_wall,
-#grey_top_bar {
+#right_cave_wall {
 	position: fixed;
 	top: -25px;
 }
@@ -74,10 +72,12 @@ header a {
 	height: 432px;
 }
 
-#left_cave_wall {
+/*#left_cave_wall {
 	z-index: -1;
 	background: url('<%= asset_path('search_bear-06.png') %>') 0 0 no-repeat;
 	background-size: 445px 432px;
+	margin-left: -40px;
+	margin-top: -20px;
 }
 
 #right_cave_wall {
@@ -85,7 +85,7 @@ header a {
 	background: url('<%= asset_path('search_bear-07.png') %>') 0 0 no-repeat;
 	background-size: 445px 432px;
 	right: 0;
-}
+}*/
 
 .container h3,
 .container h4 {
@@ -156,48 +156,36 @@ header a {
 	height: 300px;
 }
 
-.bear_talk {
-	background: white;
-	height: 110px;
-	width: 120px;
-	padding-left: 20px;
-	-webkit-clip-path: polygon(10% 0, 100% 0%, 100% 100%, 9% 100%, 9% 69%, 0 61%, 10% 52%);
-	-o-clip-path: polygon(10% 0, 100% 0%, 100% 100%, 9% 100%, 9% 69%, 0 61%, 10% 52%);
-	-moz-clip-path: polygon(10% 0, 100% 0%, 100% 100%, 9% 100%, 9% 69%, 0 61%, 10% 52%);
-	clip-path: polygon(10% 0, 100% 0%, 100% 100%, 9% 100%, 9% 69%, 0 61%, 10% 52%);
-}
-
-.bear_bar div {
-	margin: 5px;
-	width: 25px;
-	background: #1C75BC;
-}
-
 #bear_ul {
 	margin: 0 auto;
+	max-width: 400px;
 }
 
 #bear_ul li{	
 	min-height: 330px;
-	/*height: 330px;*/
 	vertical-align: top;
-}
-
-.bear_bar li,
-#bear_ul li {
-	height: 100px;
 	display: inline-block;
+	height: 10px;
 }
 
-.bear_bar li,
-.bear_bar {
-	vertical-align: bottom;
+.bear_talk {
+	background: white;
+	height: 110px;
+	width: 110px;
+	padding: 10px;
+	border-radius: 20px;
+	-o-border-radius: 20px;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	/*-webkit-clip-path: polygon(10% 0, 100% 0%, 100% 100%, 9% 100%, 9% 69%, 0 61%, 10% 52%);
+	-o-clip-path: polygon(10% 0, 100% 0%, 100% 100%, 9% 100%, 9% 69%, 0 61%, 10% 52%);
+	-moz-clip-path: polygon(10% 0, 100% 0%, 100% 100%, 9% 100%, 9% 69%, 0 61%, 10% 52%);
+	clip-path: polygon(10% 0, 100% 0%, 100% 100%, 9% 100%, 9% 69%, 0 61%, 10% 52%);*/
 }
 
-#energy,
-#happy,
-#hungry {
-	vertical-align: bottom;
+.progress {
+	width: 30%;
+	margin: 4px auto;
 }
 
 .bear_blink {

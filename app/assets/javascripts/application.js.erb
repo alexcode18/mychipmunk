@@ -31,28 +31,31 @@ var App = {
 	Routers: {}
 };
 
-$(function(){
-	// $('body').on('click', '.getBearButton', renderBearScreen);
-	// $('body').on('click', '#search_button', search);
-	// $('body').on('click', '#search_button', search);
-	// $('body').on('click', '#add_happy', raiseHappy);
-
-	// $('body').on('keypress',function(){
-	// 	var keyCode = (event.keyCode ? event.keyCode : event.which);
-	// 	if(keyCode == '13' && $('#sign_up').css('display') == 'inline-block'){
-	// 		alert('Enter key is pressed!');
-	// 	}
-	// })
-});
-
 var bearID;
 var lastSearch;
 
 $(function(){
-	$('body').on('click', '#login_submit', fetchUserData);
 	// $('body').on('click', '#search_button', search);
 	// $('body').on('click', '#search_button', search);
 	// $('body').on('click', '#add_happy', raiseHappy);
+
+	if ($('.bear_box').attr('id')) {
+		console.log('found bear');
+		bearID = parseInt($('.bear_box').attr('id'));
+		console.log(bearID);
+		$.get('/bears/' + bearID).done(function(bear){
+			console.log(bear);
+			App.bear = new App.Models.Bear(bear);
+			App.bearView = new App.Views.BearView({model: App.bear});
+		});
+	} else {
+		$.post('/users', newUser).done(renderBearForm);
+	}
+
+	if (window.location.pathname == '/') {
+		// App.Routers.UsersRouter = new App.Routers.UsersRouter({pushState: true});
+		Backbone.history.start();
+	}
 
 	$('body').on('keypress',function(){
 		var keyCode = (event.keyCode ? event.keyCode : event.which);
@@ -61,30 +64,10 @@ $(function(){
 		}
 	})
 
+	
+
 	// $('body').on('mouseenter', '.search_image', searchImageDraggable);
 });
-
-function fetchUserData() {
-	var password = $('input[name="login_password"]').val();
-	var email = $('input[name="login_email"]').val();
-
-	var newSession = {
-		email: email,
-		password: password
-	};
-
-	$.post('/sessions', newSession).done(function (data){
-		console.log(data);
-	});
-	// $.post('sessions/', newSession).done(function(user) {
-	// 	// success: function() {
-	// 		console.log('went through');
-	// 		var text = $('<span>').text('worked');
-	// 		$('#bear_box').append(text);
-	// 	// }
-	// });
-	
-};
 
 function renderErrors(errors){
 	for (var i = 0; i < errors.length; i++){
