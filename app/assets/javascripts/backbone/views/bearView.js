@@ -4,82 +4,100 @@ App.Views.BearView = Backbone.View.extend({
 		console.log('reached BearView');
 		var bear = this.model;
 		this.listenTo(this.model,'change', this.renderFeelings);
+		this.template = HandlebarsTemplates['bear'];
 		this.bearData();
 		this.render = _.bind(this.render, this);
 		this.model.bind('change:hunger', this.render);
 		this.model.bind('change:happiness', this.render);
     this.model.bind('change:energy', this.render);
+    this.bearBlink();
 	},
 	events: {
-
+		'click .raise-happiness': function(){this.raiseBar(5,'happiness');},
+		'click .raise-energy': function(){this.raiseBar(5,'energy');},
+		'click .raise-hunger': function(){this.raiseBar(5,'hunger');}
 	},
 	bearData: function() {
-		var bearName = this.model.get('name');
-		var bearImage = $('<div>').addClass('bear');
-		var talkDiv = $('<div>').text('Hi! My name is ' + bearName + '.').addClass('bear_talk');
-		var bearUl = $('<ul id="bear_ul">');
-		var bearLi = $('<li id="bear_li">');
-		var talkLi = $('<li id="talk_li">');
-		bearLi.append(bearImage);
-		talkLi.append(talkDiv);
-		bearUl.append(bearLi).append(talkLi);
-		this.$el.append(bearUl);
+		// var bearName = this.model.get('name');
+		// var bearImage = $('<div>')
+		// var bearDiv = $('<div id="bear_container">');
+		// var talkDiv = $('<div>').addClass('bear_talk').attr('id', 'talk_div').addClass('glyphicon glyphicon-heart');
+		
+		// bearDiv.append(talkDiv);
+		// this.$el.append(bearDiv);
+		this.$el.html(this.template(this.model.toJSON()));
 		this.feelingsCounter();
 	},
 	feelingsCounter: function() {
 		var bearID = this.model.attributes.id;
 		var bear = this.model;
-		// var bearBars = $('<ul>').addClass('bear_bar');
-		// var energyLi = $('<li>');
-		// var happyLi = $('<li>');
-		// var hungerLi = $('<li>');
-		// var energyBar = $('<div>').attr('id', 'energy').addClass('glyphicon glyphicon-flash');
-		// var happyBar = $('<div>').attr('id', 'happy').addClass('glyphicon glyphicon-heart');
-		// var hungerBar = $('<div>').attr('id', 'hunger').addClass('glyphicon glyphicon-cutlery');
-		// energyLi.append(energyBar);
-		// happyLi.append(happyBar);
-		// hungerLi.append(hungerBar);
-		// bearBars.append(energyLi)
-		// 				.append(happyLi)
-		// 				.append(hungerLi);
-		// $('#bear_stats').append(bearBars);
 		this.renderFeelings();
 		var that = this;
-		// setInterval(function(){
-		// 	var newEnergy = that.model.get('energy') - 1;
-		// 	var newHappiness = that.model.get('happiness') - 1;
-		// 	var newHunger = that.model.get('hunger') - 1;
-		// 	console.log(newEnergy);
+		setInterval(function(){
+			var newEnergy = that.lowerBar(1,'energy');
+			var newHappiness = that.lowerBar(1,'happiness');
+			var newHunger = that.lowerBar(1,'hunger');
 
-		// 	App.bear.set({
-		// 		energy: newEnergy,
-		// 		happiness: newHappiness,
-		// 		hunger: newHunger
-		// 	});
-		// 	App.bear.save();
-			
-		// }, 9000);//86000
+			App.bear.set({
+				energy: newEnergy,
+				happiness: newHappiness,
+				hunger: newHunger
+			});
+			App.bear.save();	
+		}, 86000);
 	},
 	renderFeelings: function() {
-		// $('#energy').css('width', (this.model.get('energy')*2) + 'px');
-		// $('#energy').attr('aria-valuenow', this.model.get('energy'));
 		$('#energy').css('width', this.model.get('energy') + '%');
 		$('#happiness').css('width', this.model.get('happiness') + '%');
 		$('#hunger').css('width', this.model.get('hunger') + '%');
-
-		// $('#happy').css('width', (this.model.get('happiness')*2) + 'px');
-		// $('#hunger').css('width', (this.model.get('hunger')*2) + 'px');
 	},
-	getStats: function() {
+	raiseBar: function(num, arg) {
+		console.log('raised ' + arg);
+		var newArg;
+		if (this.model.get(arg) <= 90) {
+			newArg = this.model.get(arg) + num;
+			console.log('raised if statement for ' + arg);
+		} else if (this.model.get(arg) + num >= 100) {
+			var raiseNum = 100 - this.model.get(arg);
+			newArg = this.model.get(arg) + raiseNum;
+		}
 
+		if (arg == 'energy') {
+			App.bear.set({
+				energy: newArg
+			});
+		} else if (arg == 'happiness') {
+			App.bear.set({
+				happiness: newArg
+			});
+		} else if (arg == 'hunger') {
+			App.bear.set({
+				hunger: newArg
+			});
+		}
+		App.bear.save();
 	},
-	raiseHappy: function() {
+	lowerBar: function(num, stat) {
+		var newStat = this.model.get(stat);
 
+		if (this.model.get(stat) != 0) {
+			newStat = this.model.get(stat) - num;
+		}
+		return newStat;
 	},
-	raiseHunger: function() {
-
-	},
-	raiseSleep: function() {
-
+	bearBlink: function() {
+		setInterval(function(){
+			$('.eye').css('visibility','visible');
+		}, 1000);
+		setInterval(function(){
+			$('.eye').css('visibility','hidden');
+		}, 6000);
+		// setInterval(function(){
+		// 	$('#bear_body').animate({top: 20});
+		// }, 200);
+		// setInterval(function(){
+		// 	$('#bear_body').animate({top: 0});
+		// }, 400);
+		// $('#bear_body').animate('top',0);
 	}
 })

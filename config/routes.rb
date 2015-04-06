@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   # resources :users, only: [:index, :show, :create, :update, :destroy]
   root to: 'application#index'
   devise_for :users
+  resources :bings
   # , :controllers => { registrations: 'users/registrations' }
 
 # Rails.application.routes.draw do
