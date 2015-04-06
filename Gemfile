@@ -5,6 +5,11 @@ group :development do
   gem 'rspec-collection_matchers'
   gem 'shoulda-matchers', require: false
 end
+
+group :assets do
+	gem 'handlebars_assets'
+end
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 # gem 'railties', '4.2.0'
@@ -37,7 +42,7 @@ gem 'httparty'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 gem 'rails_12factor' #tells heroku how to find assets
-
+gem 'backbars'
 # Use unicorn as the app server
 # gem 'unicorn'
 

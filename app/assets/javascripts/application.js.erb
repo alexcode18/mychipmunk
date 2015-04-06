@@ -33,12 +33,17 @@ var App = {
 
 var bearID;
 var lastSearch;
-
+// App.openLogin = true;
 $(function(){
-	// $('body').on('click', '#search_button', search);
-	// $('body').on('click', '#search_button', search);
-	// $('body').on('click', '#add_happy', raiseHappy);
-
+	var time = $.now();	
+	console.log(time);
+	$('body').on('click', '#search_button', search);
+	$('body').on('click', '#login_button', toggleLoginForm);
+	$('body').on('click', '.actions', toggleLoginForm);
+	// $(document).on('load', '#login_submit', launchBear)
+	
+	App.bingView = new App.Views.BingView();
+	
 	if ($('.bear_box').attr('id')) {
 		console.log('found bear');
 		bearID = parseInt($('.bear_box').attr('id'));
@@ -49,7 +54,7 @@ $(function(){
 			App.bearView = new App.Views.BearView({model: App.bear});
 		});
 	} else {
-		$.post('/users', newUser).done(renderBearForm);
+		// $.post('/users', newUser).done(renderBearForm);
 	}
 
 	if (window.location.pathname == '/') {
@@ -57,15 +62,26 @@ $(function(){
 		Backbone.history.start();
 	}
 
-	$('body').on('keypress',function(){
-		var keyCode = (event.keyCode ? event.keyCode : event.which);
-		if(keyCode == '13' && $('#sign_up').css('display') == 'inline-block'){
-			alert('Enter key is pressed!');
-		}
-	})
+	$('body').on('keypress',function(e) {
+    if(e.which == 13) {
+			search();
+    }
+	});
 
+	if (bearID == undefined) {
+		$('#login_submit').click();
+	}
+
+	if (bearID != undefined && ($('.login_menu').css('display') != 'none')) {
+		toggleLoginForm();
+	}
 	
+	window.replaceState = function(){    
+      location.reload();
+	}
 
+	$('input[name="search"]').val('bear');
+	search();
 	// $('body').on('mouseenter', '.search_image', searchImageDraggable);
 });
 
@@ -75,6 +91,41 @@ function renderErrors(errors){
 	}
 };
 
+function toggleLoginForm() {
+	console.log('toggle');
+	$('.login_menu').slideToggle();
+}
+
+function search(){
+	console.log('whats not happening?');
+		var value = $('input[name="search"]').val();
+		var joinedValue = value.split(' ').join('+');
+		console.log(joinedValue);
+		var newSearch = {
+			search: joinedValue
+		};
+		console.log(newSearch);
+	$.post('bings/', newSearch).done(function(searches){
+		$('#search_zone').empty();
+		$('input[name="search"]').val('');
+		console.log(searches);
+		for(var i = 0; i < searches.d.results.length; i++) {
+			var searchTitle = searches.d.results[i].Title;
+			var searchDesc = searches.d.results[i].Description;
+			var searchUrl = searches.d.results[i].DisplayUrl;
+			console.log(searchTitle);
+			if (searchTitle) {
+				var searchBox = $('<div>').addClass('search_box');
+				var searchUl = $('<ul>').addClass('search_ul');
+				var titleLi = $('<li>').text(searchTitle).addClass('search_title').addClass('search_li');
+				var descLi = $('<li>').text(searchDesc).addClass('search_desc').addClass('search_li');
+				var urlLi = $('<li>').text(searchUrl).addClass('search_url').addClass('search_li');
+				searchBox.append(titleLi).append(descLi).append(urlLi);
+				$('#search_zone').append(searchBox);
+			}	
+		}
+	});
+}
 // function createOrUpdateUser(){
 // 	var email = $('input[name="signup_email"]').val();
 // 	var password = $('input[name="signup_password"]').val();
@@ -181,37 +232,6 @@ function renderErrors(errors){
 // 	memoryItem.prependTo('#memory_box');
 // };
 
-// function bearFeelingsCounter(bear) {
-// 	var energy = bear.energy;
-// 	var happy = bear.happiness;
-// 	var hunger = bear.hunger;
-// 	var bearBars = $('<ul>').addClass('bear_bar');
-// 	var energyLi = $('<li>');
-// 	var happyLi = $('<li>');
-// 	var hungerLi = $('<li>');
-// 	var energyBar = $('<div>').attr('id', 'energy');
-// 	var happyBar = $('<div>').attr('id', 'happy');
-// 	var hungerBar = $('<div>').attr('id', 'hunger');
-// 	energyLi.append(energyBar);
-// 	happyLi.append(happyBar);
-// 	hungerLi.append(hungerBar);
-// 	bearBars.append(energyLi)
-// 					.append(happyLi)
-// 					.append(hungerLi);
-// 	$('#bars_li').append(bearBars);
-// 	$('#energy').css('height', bear.energy + 'px');
-// 	$('#happy').css('height', bear.happiness + 'px');
-// 	$('#hunger').css('height', bear.hunger + 'px');
-
-// 	setInterval(function(){
-// 		$.ajax({
-// 			url: '/bears/' + bearID + '/automaticscore', 
-// 			type: 'put'
-// 		}).done(renderBearFeelings)
-// 	}, 86000);
-// };
-
-// function renderBearFeelings(bear){
 // 	$('#energy').css('height', bear.energy + 'px');
 // 	$('#happy').css('height', bear.happiness + 'px');
 // 	$('#hunger').css('height', bear.hunger + 'px');
