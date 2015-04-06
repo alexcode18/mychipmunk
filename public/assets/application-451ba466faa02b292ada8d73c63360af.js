@@ -14808,9 +14808,9 @@ $(function(){
     }
 	});
 
-	if (bearID == undefined) {
-		$('#login_submit').click();
-	}
+	// if (bearID == undefined) {
+	// 	$('#login_submit').click();
+	// }
 
 	if (bearID != undefined && ($('.login_menu').css('display') != 'none')) {
 		toggleLoginForm();
