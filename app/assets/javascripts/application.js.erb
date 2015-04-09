@@ -40,7 +40,7 @@ $(function(){
 	$('body').on('click', '#search_button', search);
 	$('body').on('click', '#login_button', toggleLoginForm);
 	$('body').on('click', '.actions', toggleLoginForm);
-	// $(document).on('load', '#login_submit', launchBear)
+	// $(document).on('load', '#login_submit', launchBear);
 	
 	App.bingView = new App.Views.BingView();
 	
@@ -126,64 +126,6 @@ function search(){
 		}
 	});
 }
-// function createOrUpdateUser(){
-// 	var email = $('input[name="signup_email"]').val();
-// 	var password = $('input[name="signup_password"]').val();
-// 	var passwordConf = $('input[name="signup_confirmation"]').val();
-// 	var childName = $('input[name="childName"]').val();
-// 	var childGender = $('input:radio[name=childGender]:checked').val();
-// 	var favColor = $('input:radio[name="childFavColor"]:checked').val();
-	
-// 	var newUser = {
-// 		parent_email: email,
-// 		password: password,
-// 		password_confirmation: passwordConf,
-// 		child_name: childName,
-// 		child_gender: childGender,
-// 		favorite_color: favColor
-// 	};
-
-// 	if (bearID) {
-// 		$.get('/bears/' + bearID).done(function(bear){
-// 			var userID = bear.user.id;
-// 			$.ajax({
-// 				url: '/users/' + userID,
-// 				type: 'put',
-// 				data: newUser
-// 			}).done(bearScreenData(bear))
-// 		});
-// 	} else {
-// 		$.post('/users', newUser).done(renderBearForm);
-// 	}
-// };
-
-// function createOrUpdateBear() {
-// 	var bearOwner = $('input[name="bearName"]').attr('id');
-// 	var bearName = $('input[name="bearName"]').val();
-// 	var bearGender = $('input:radio[name=bearGender]:checked').val();
-	
-// 	var newBear = {
-// 		user_id: bearOwner,
-// 		name: bearName,
-// 		gender: bearGender
-// 	}
-
-// 	if (bearID) {
-// 		$.get('/bears/' + bearID).done(function(bear){
-// 			$.ajax({
-// 				url: '/bears/' + bearID,
-// 				type: 'put',
-// 				data: newBear
-// 			}).done(bearScreenData(bear))
-// 		});
-// 	} else {
-// 		$.post('/bears', newBear).done(function(data){
-// 			var bearID = data.id;
-// 			$.get('/bears/' + bearID).done(bearScreenData);
-// 		});
-// 	}
-	
-// }
 
 // //validates the user, and empties the sign-in form to produce a bear list.
 // function renderSession(currentUser){
@@ -192,35 +134,6 @@ function search(){
 // 	var bears = currentUser.bears;
 	
 // 	$('#login').empty().append(getBears(bears));
-// };
-
-// function bearBlink(){
-// 	$('.bear').toggleClass('bear_blink');
-// };
-
-// function search(){
-// 	var value = $('input[name="search"]').val();
-// 	console.log(value);
-// 	var newSearch = {
-// 		search: value
-// 	};
-// 	console.log(newSearch);
-// 	$.post('/bings/', newSearch).done(function(searches){
-// 		$('#searches_box').empty();
-// 		console.log(searches.d.results[1].MediaUrl);
-// 		for(var i = 0; i < searches.d.results.length; i++) {
-// 			var searchUrl = searches.d.results[i].MediaUrl;
-// 			if (searchUrl) {
-// 				var searchImage = $('<img>').attr('src', searchUrl).addClass('search_image');
-// 				lastSearch = value;
-// 				$('#searches_box').append(searchImage);
-// 			}	
-// 		}
-// 	});
-// };
-
-// function imageBox(url){
-// 	$('<div>').css('background', 'url(' + url + ')');
 // };
 
 // function fetchMemory(memory){
