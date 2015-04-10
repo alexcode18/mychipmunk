@@ -41,6 +41,10 @@ $(function(){
 	$('body').on('click', '#login_button', toggleLoginForm);
 	$('body').on('click', '.actions', toggleLoginForm);
 	// $(document).on('load', '#login_submit', launchBear);
+
+	$(document).ready(function() {
+  	$('#login_submit').trigger('click');
+	});
 	
 	App.bingView = new App.Views.BingView();
 	
@@ -82,8 +86,12 @@ $(function(){
 
 	$('input[name="search"]').val('bear');
 	search();
-	// $('body').on('mouseenter', '.search_image', searchImageDraggable);
 });
+
+function launchBear(){
+	console.log('click login_submit');
+	$('#login_submit').click();
+}
 
 function renderErrors(errors){
 	for (var i = 0; i < errors.length; i++){
@@ -119,7 +127,8 @@ function search(){
 				var searchUl = $('<ul>').addClass('search_ul');
 				var titleLi = $('<li>').text(searchTitle).addClass('search_title').addClass('search_li');
 				var descLi = $('<li>').text(searchDesc).addClass('search_desc').addClass('search_li');
-				var urlLi = $('<li>').text(searchUrl).addClass('search_url').addClass('search_li');
+				var urlA = $('<a>').text(searchUrl).attr('href', searchUrl);
+				var urlLi = $('<li>').append(urlA).addClass('search_url').addClass('search_li');
 				searchBox.append(titleLi).append(descLi).append(urlLi);
 				$('#search_zone').append(searchBox);
 			}	
