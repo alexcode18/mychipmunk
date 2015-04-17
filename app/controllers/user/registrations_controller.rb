@@ -1,6 +1,6 @@
 class User::RegistrationsController < Devise::RegistrationsController
-# before_filter :configure_sign_up_params, only: [:create]
-# before_filter :configure_account_update_params, only: [:update]
+  # before_filter :configure_sign_up_params, only: [:create]
+  # before_filter :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
   # def new
@@ -9,42 +9,7 @@ class User::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   # def create
-  #   puts '-----------'
-  #   puts 'reaching the create resource'
-  #   puts '-----------'
-  #   build_resource(sign_up_params)
-
-  #   @new_bear = Bear.new()
-  #   @new_bear.name = Faker::Name.first_name()
-  #   @new_bear.gender = ["M", "F"].sample
-  #   @new_bear.hunger = 100
-  #   @new_bear.happiness = 100
-  #   @new_bear.energy = 100
-  #   @new_bear.user_id = resource.id
-
-  #   resource.bear_id = @new_bear.id
-  #   puts '-----------'
-  #   puts 'resource bear: #{resource.bear_id}'
-  #   puts '-----------'
-  #   @new_bear.save()
-  #   resource.save
-
-  #   yield resource if block_given?
-  #   if resource.persisted?
-  #     if resource.active_for_authentication?
-  #       set_flash_message :notice, :signed_up if is_flashing_format?
-  #       sign_up(resource_name, resource)
-  #       respond_with resource, location: after_sign_up_path_for(resource)
-  #     else
-  #       set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_flashing_format?
-  #       expire_data_after_sign_in!
-  #       respond_with resource, location: after_inactive_sign_up_path_for(resource)
-  #     end
-  #   else
-  #     clean_up_passwords resource
-  #     set_minimum_password_length
-  #     respond_with resource
-  #   end
+  #   super
   # end
 
   # GET /resource/edit
@@ -74,8 +39,9 @@ class User::RegistrationsController < Devise::RegistrationsController
   # protected
 
   # You can put the params you want to permit in the empty array.
-  # def configure_sign_up_params
-  #   devise_parameter_sanitizer.for(:sign_up) << :attribute
+  # def sign_up_params
+  #   allow = [:email, :password, :password_confirmation, :bear_id]
+  #   params.require(resource_name).permit(allow)
   # end
 
   # You can put the params you want to permit in the empty array.

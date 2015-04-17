@@ -52,35 +52,39 @@ App.Views.BearView = Backbone.View.extend({
 		$('#hunger').css('width', this.model.get('hunger') + '%');
 	},
 	raiseBar: function(num, arg) {
-		console.log('raised ' + arg);
+		
 		var newArg;
-		if (this.model.get(arg) <= 90) {
-			newArg = this.model.get(arg) + num;
-			console.log('raised if statement for ' + arg);
-		} else if (this.model.get(arg) + num >= 100) {
-			var raiseNum = 100 - this.model.get(arg);
-			newArg = this.model.get(arg) + raiseNum;
-		}
 
-		if (arg == 'energy') {
-			App.bear.set({
-				energy: newArg
-			});
-		} else if (arg == 'happiness') {
-			App.bear.set({
-				happiness: newArg
-			});
-		} else if (arg == 'hunger') {
-			App.bear.set({
-				hunger: newArg
-			});
+		if (this.model.get(arg) < 100) {
+			console.log('raised ' + arg);
+			if (this.model.get(arg) <= 95) {
+				newArg = this.model.get(arg) + num;
+				console.log('raised if statement for ' + arg);
+			} else if (this.model.get(arg) + num >= 95) {
+				newArg = 100;
+			}
+
+			if (arg == 'energy') {
+				this.model.set({
+					energy: newArg
+				});
+			} else if (arg == 'happiness') {
+				this.model.set({
+					happiness: newArg
+				});
+			} else if (arg == 'hunger') {
+				this.model.set({
+					hunger: newArg
+				});
+			}
+			this.model.save();
 		}
-		App.bear.save();
+		
 	},
 	lowerBar: function(num, stat) {
 		var newStat = this.model.get(stat);
 
-		if (this.model.get(stat) != 0) {
+		if (this.model.get(stat) != 10) {
 			newStat = this.model.get(stat) - num;
 		}
 		return newStat;

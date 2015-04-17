@@ -40,25 +40,33 @@ $(function(){
 	$('body').on('click', '#search_button', search);
 	$('body').on('click', '#login_button', toggleLoginForm);
 	$('body').on('click', '.actions', toggleLoginForm);
-	// $(document).on('load', '#login_submit', launchBear);
 
 	$(document).ready(function() {
   	$('#login_submit').trigger('click');
 	});
 	
 	App.bingView = new App.Views.BingView();
-	
-	if ($('.bear_box').attr('id')) {
+	var sPath = window.location.pathname;
+	// var sPage = sPath.substring(sPath.lastIndexOf('/')); 
+	console.log(sPath);
+
+	if (window.location.pathname == '/' && $('.bear_box').attr('id') != "none") {
 		console.log('found bear');
 		bearID = parseInt($('.bear_box').attr('id'));
 		console.log(bearID);
+
 		$.get('/bears/' + bearID).done(function(bear){
 			console.log(bear);
 			App.bear = new App.Models.Bear(bear);
 			App.bearView = new App.Views.BearView({model: App.bear});
 		});
 	} else {
-		// $.post('/users', newUser).done(renderBearForm);
+		console.log('about to try posting bear');
+		$.post('/bears/').done(function(bear){
+			console.log(bear);
+			App.bear = new App.Models.Bear(bear);
+			App.bearView = new App.Views.BearView({model: App.bear});
+		});
 	}
 
 	if (window.location.pathname == '/') {
@@ -87,11 +95,6 @@ $(function(){
 	$('input[name="search"]').val('bear');
 	search();
 });
-
-function launchBear(){
-	console.log('click login_submit');
-	$('#login_submit').click();
-}
 
 function renderErrors(errors){
 	for (var i = 0; i < errors.length; i++){

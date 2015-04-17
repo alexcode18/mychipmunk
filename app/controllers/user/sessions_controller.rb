@@ -9,6 +9,19 @@ class User::SessionsController < Devise::SessionsController
   # POST /resource/sign_in
   # def create
   #   super
+  #   if current_user.bear_id === undefined || current_user.bear_id === nil do
+  #     @new_bear = Bear.new()
+  #     @new_bear.name = Faker::Name.first_name()
+  #     @new_bear.gender = ["M", "F"].sample
+  #     @new_bear.hunger = 100
+  #     @new_bear.happiness = 100
+  #     @new_bear.energy = 100
+  #     @new_bear.user_id = current_user.id
+
+  #     current_user.bear_id = @new_bear.id
+  #     @new_bear.save()
+  #     current_user.save()
+  #   end
   # end
 
   # DELETE /resource/sign_out
