@@ -86,14 +86,15 @@ $(function(){
 
 	if (bearID != undefined && ($('.login_menu').css('display') != 'none')) {
 		toggleLoginForm();
+		$('input[name="search"]').val('bear');
+		search();
 	}
 	
 	window.replaceState = function(){    
       location.reload();
 	}
 
-	$('input[name="search"]').val('bear');
-	search();
+	
 });
 
 function renderErrors(errors){
