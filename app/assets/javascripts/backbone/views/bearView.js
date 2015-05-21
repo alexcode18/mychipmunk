@@ -1,5 +1,5 @@
 App.Views.BearView = Backbone.View.extend({
-	el: '.bear_box',
+	el: '#bear_land',
 	initialize: function() {
 		console.log('reached BearView');
 		var bear = this.model;
@@ -15,7 +15,8 @@ App.Views.BearView = Backbone.View.extend({
 	events: {
 		'click .raise-happiness': function(){this.raiseBar(5,'happiness');},
 		'click .raise-energy': function(){this.raiseBar(5,'energy');},
-		'click .raise-hunger': function(){this.raiseBar(5,'hunger');}
+		'click .raise-hunger': function(){this.raiseBar(5,'hunger');},
+		'click .open_sidebar_btn': 'openSidebar'
 	},
 	bearData: function() {
 		// var bearName = this.model.get('name');
@@ -25,7 +26,7 @@ App.Views.BearView = Backbone.View.extend({
 		
 		// bearDiv.append(talkDiv);
 		// this.$el.append(bearDiv);
-		this.$el.html(this.template(this.model.toJSON()));
+		this.$el.find('.bear_box').html(this.template(this.model.toJSON()));
 		this.feelingsCounter();
 	},
 	feelingsCounter: function() {
@@ -83,8 +84,9 @@ App.Views.BearView = Backbone.View.extend({
 	},
 	lowerBar: function(num, stat) {
 		var newStat = this.model.get(stat);
-
-		if (this.model.get(stat) != 10) {
+		// need to not allow progress to go below 10%
+		// 
+		if (this.model.get(stat) != 20) {
 			newStat = this.model.get(stat) - num;
 		}
 		return newStat;
@@ -103,5 +105,10 @@ App.Views.BearView = Backbone.View.extend({
 		// 	$('#bear_body').animate({top: 0});
 		// }, 400);
 		// $('#bear_body').animate('top',0);
+	},
+	openSidebar: function() {
+		$('#sidebar').toggle(900);
+		$('.bear_box').toggleClass('col-xs-9 col-md-9');
+		$('header').toggleClass('col-xs-9 col-md-9');
 	}
 })

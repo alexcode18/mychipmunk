@@ -20,8 +20,12 @@
     <div class="row">
       
       <div class="col-xs-12 col-sm-7 col-md-8" id="bear_land">
+        
         <header class="header col-xs-12 col-md-12">
           <ul id="header_list">
+            <!-- <li>
+              <button class="btn btn-default open_sidebar_btn glyphicon glyphicon-tasks"> +</button>
+            </li> -->
             <li>
               <h1>Search Bear</h1>
               <p>beta</p>
@@ -44,10 +48,8 @@
               </li>
             </ul>
         </header>
-        <div class="col-xs-12 col-md-12">
 
-          
-
+        <div>
           <% if user_signed_in? %>
             <div class="bear_box col-xs-12 col-md-12" id="
             <% if current_user.bear_id %>
@@ -62,26 +64,30 @@
               <p>Adopt this bear?</p>
             </div>
           <% end %>
-
         </div>
-        <!-- stats zone -->
+        <div class="bar">
+          <button class="btn btn-default raise-happiness glyphicon glyphicon-heart">+</button>
+          <button class="btn btn-default raise-energy glyphicon glyphicon-flash">+</button>
+          <button class="btn btn-default raise-hunger glyphicon glyphicon-apple">+</button>
+          <button class="btn btn-default raise-hunger glyphicon glyphicon-tint">+</button>
+        </div>
         <div class="col-xs-12 col-md-12" id="bear_stats">
-          <div class="progress">
-            <div class="progress-bar" id="energy" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;">
-              <span class="glyphicon glyphicon-flash"></span>
+            <div class="progress">
+              <div class="progress-bar" id="energy" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;">
+                <span class="glyphicon glyphicon-flash"></span>
+              </div>
+            </div>
+            <div class="progress">
+              <div class="progress-bar" id="happiness" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;">
+                <span class="glyphicon glyphicon-heart"></span>
+              </div>
+            </div>
+            <div class="progress">
+              <div class="progress-bar" id="hunger" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;">
+                <span class="glyphicon glyphicon-cutlery"></span>
+              </div>
             </div>
           </div>
-          <div class="progress">
-            <div class="progress-bar" id="happiness" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;">
-              <span class="glyphicon glyphicon-heart"></span>
-            </div>
-          </div>
-          <div class="progress">
-            <div class="progress-bar" id="hunger" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;">
-              <span class="glyphicon glyphicon-cutlery"></span>
-            </div>
-          </div>
-        </div>
 
       </div>
       <div class="col-xs-12 col-sm-5 col-md-4" class="search_div">
@@ -97,6 +103,7 @@
               </div><!-- /input-group -->
             </div><!-- /.col-lg-6 -->
           </div><!-- /.row -->
+
 
         </div>
 
