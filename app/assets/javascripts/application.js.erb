@@ -59,6 +59,8 @@ $(function(){
 			console.log(bear);
 			App.bear = new App.Models.Bear(bear);
 			App.bearView = new App.Views.BearView({model: App.bear});
+			$('input[name="search"]').val('bear');
+			search();
 		});
 	} else {
 		console.log('about to try posting bear');
@@ -86,8 +88,6 @@ $(function(){
 
 	if (bearID != undefined && ($('.login_menu').css('display') != 'none')) {
 		toggleLoginForm();
-		$('input[name="search"]').val('bear');
-		search();
 	}
 	
 	window.replaceState = function(){    
