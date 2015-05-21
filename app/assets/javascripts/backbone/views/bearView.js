@@ -11,6 +11,8 @@ App.Views.BearView = Backbone.View.extend({
 		this.model.bind('change:happiness', this.render);
     this.model.bind('change:energy', this.render);
     this.bearBlink();
+    $('input[name="search"]').val('bear');
+		search();
 	},
 	events: {
 		'click .raise-happiness': function(){this.raiseBar(5,'happiness');},

@@ -54,13 +54,14 @@ $(function(){
 		console.log('found bear');
 		bearID = parseInt($('.bear_box').attr('id'));
 		console.log(bearID);
-
+		var that = this;
 		$.get('/bears/' + bearID).done(function(bear){
 			console.log(bear);
 			App.bear = new App.Models.Bear(bear);
-			App.bearView = new App.Views.BearView({model: App.bear});
-			$('input[name="search"]').val('bear');
-			search();
+			App.bearView = new App.Views.BearView({
+				model: App.bear
+			});
+			
 		});
 	} else {
 		console.log('about to try posting bear');
@@ -116,7 +117,7 @@ function search(){
 		var newSearch = {
 			search: joinedValue
 		};
-		console.log(newSearch);
+		console.log('newSearch: ' + newSearch);
 	$.post('bings/', newSearch).done(function(searches){
 		$('#search_zone').empty();
 		$('input[name="search"]').val('');
