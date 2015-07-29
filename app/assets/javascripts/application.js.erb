@@ -41,9 +41,11 @@ $(function(){
 	$('body').on('click', '#login_button', toggleLoginForm);
 	$('body').on('click', '.actions', toggleLoginForm);
 
-	$(document).ready(function() {
-  	$('#login_submit').trigger('click');
-	});
+
+	// Automatically sends login form
+	// $(document).ready(function() {
+ //  	$('#login_submit').trigger('click');
+	// });
 	
 	App.bingView = new App.Views.BingView();
 	var sPath = window.location.pathname;
@@ -87,15 +89,19 @@ $(function(){
 	// 	$('#login_submit').click();
 	// }
 
-	if (bearID != undefined && ($('.login_menu').css('display') != 'none')) {
-		toggleLoginForm();
-	}
+	// if (bearID != undefined && ($('.login_menu').css('display') != 'none')) {
+	// 	toggleLoginForm();
+	// }
 	
 	window.replaceState = function(){    
       location.reload();
 	}
 
-	
+	$.post('/ga/').done(function(data){
+		console.log(data);
+		// App.bear = new App.Models.Bear(bear);
+		// App.bearView = new App.Views.BearView({model: App.bear});
+	});
 });
 
 function renderErrors(errors){
