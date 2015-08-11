@@ -51,13 +51,7 @@
 
         <div>
           <% if user_signed_in? %>
-            <div class="bear_box col-xs-12 col-md-12" id="
-            <% if current_user.bear_id %>
-              <%= current_user.bear_id %>
-            <% else %>
-              <%= 'none' %>
-            <% end %>"
-              >
+            <div class="bear_box col-xs-12 col-md-12" id="<% if current_user.bear_id %><%= current_user.bear_id %><% else %><%= 'none' %><% end %>">
             </div>
           <% else %>
             <div class="adopt_bear_box col-xs-12 col-md-12">
