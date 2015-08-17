@@ -43,9 +43,9 @@ $(function(){
 
 
 	// Automatically sends login form
-	// $(document).ready(function() {
- //  	$('#login_submit').trigger('click');
-	// });
+	$(document).ready(function() {
+  	$('#login_submit').trigger('click');
+	});
 	
 	App.bingView = new App.Views.BingView();
 	var sPath = window.location.pathname;
@@ -136,7 +136,7 @@ function search(){
 				var urlLi = $('<li>').append(urlA).addClass('search_url').addClass('search_li');
 				searchBox.append(titleLi).append(descLi).append(urlLi);
 				$('#search_zone').append(searchBox);
-				// App.jPM.trigger();
+				App.jPM.trigger();
 			}	
 		}
 	});

@@ -115,6 +115,7 @@ h1 {
 	font-size: 16pt;
 	color: white;
 	margin-top: 0;
+	padding: 12px;
 }
 
 h1 span {
@@ -130,7 +131,7 @@ h3 {
 }
 
 .header {
-	background: green;
+	/*background: green;*/
 	text-align: center;
 }
 
@@ -231,13 +232,16 @@ input[type=submit]:hover {
 
 .progress-bar {
 	background: #F15A29;
-	min-width: 0;
+	min-width: 0px;
 }
 
 #open-search {
 	position: absolute;
 	top: 50%;
-	right: -30px;
+	right: -47px;
+	background: #0c91c9;
+	border-color: white;
+	color: white;
 }
 
 #search_zone {
@@ -331,12 +335,8 @@ input[type=submit]:hover {
 }
 
 .progress .glyphicon {
-	padding:0px;
+	padding:2px;
 	margin: 0px;
-}
-
-.glyphicon {
-	padding: 2px;
 }
 
 #bear_body {
@@ -503,6 +503,10 @@ input[type=submit]:hover {
 	-moz-border-radius: 0 0 5px 5px;
 }
 
+.wide-mouth {
+	height:20px;
+}
+
 .bar {
 	top: 250px;
 }
@@ -587,6 +591,14 @@ input[type=submit]:hover {
 	.progress-bar {
 		height: 15px;
 		line-height: 0px;
+	}
+
+	.header {
+		text-align: left;
+	}
+
+	h1 span {
+		display: none;
 	}
 
 

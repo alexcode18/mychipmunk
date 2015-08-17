@@ -11,23 +11,18 @@ App.Views.BearView = Backbone.View.extend({
 		this.model.bind('change:happiness', this.render);
     this.model.bind('change:energy', this.render);
     this.bearBlink();
-    $('input[name="search"]').val('bear');
-		search();
+    this.droppableMouth();
+    // $('input[name="search"]').val('bear');
+		// search();
+
 	},
 	events: {
 		'click .raise-happiness': function(){this.raiseBar(5,'happiness');},
 		'click .raise-energy': function(){this.raiseBar(5,'energy');},
-		'click .raise-hunger': function(){this.raiseBar(5,'hunger');},
-		'click .open_sidebar_btn': 'openSidebar'
+		'click .raise-hunger': function(){this.raiseBar(5,'hunger');}
+		// 'mousedown .food': function(){this.draggableObj();}
 	},
 	bearData: function() {
-		// var bearName = this.model.get('name');
-		// var bearImage = $('<div>')
-		// var bearDiv = $('<div id="bear_container">');
-		// var talkDiv = $('<div>').addClass('bear_talk').attr('id', 'talk_div').addClass('glyphicon glyphicon-heart');
-		
-		// bearDiv.append(talkDiv);
-		// this.$el.append(bearDiv);
 		this.$el.find('.bear_box').html(this.template(this.model.toJSON()));
 		this.feelingsCounter();
 	},
@@ -108,9 +103,25 @@ App.Views.BearView = Backbone.View.extend({
 		// }, 400);
 		// $('#bear_body').animate('top',0);
 	},
-	openSidebar: function() {
-		$('#sidebar').toggle(900);
-		$('.bear_box').toggleClass('col-xs-9 col-md-9');
-		$('header').toggleClass('col-xs-9 col-md-9');
+	draggableObj: function() {
+		console.log(this);
+		$(this).draggable({
+			helper: 'clone'
+		});
+		console.log('getting past clone');
+	},
+	droppableMouth: function() {
+		var that = this;
+		$('.mouth').droppable({
+			accept: '.food',
+			hoverClass: 'wide-mouth',
+			drop: function(event, ui) {
+				var drg = ui.helper;
+				that.raiseBar(5,'hunger');
+			}
+		});
 	}
 })
+
+
+

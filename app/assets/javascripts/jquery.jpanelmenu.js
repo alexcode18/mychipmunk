@@ -19,7 +19,7 @@
 				keepEventHandlers: false,
 
 				direction: 'left',
-				openPosition: '90%',
+				openPosition: '100%',
 				animated: true,
 				closeOnContentClick: true,
 
