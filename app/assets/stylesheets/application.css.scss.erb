@@ -1,4 +1,4 @@
-/*
+f/*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
  *
@@ -15,6 +15,67 @@
  */
 
 /*@import url(https://fonts.googleapis.com/css?family=Raleway:400,500,600,700);*/
+
+/*////////////////////////
+
+			Start Reset.css
+
+/////////////////////////*/
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/*////////////////////////
+
+			End Reset.css
+
+/////////////////////////*/
 
 .clearfix:after {
     content: ".";
@@ -53,7 +114,11 @@ h1 {
 	text-transform: uppercase;
 	font-size: 16pt;
 	color: white;
-	padding-top: 10px;
+	margin-top: 0;
+}
+
+h1 span {
+	font-size: 11px;
 }
 
 h3 {
@@ -65,16 +130,15 @@ h3 {
 }
 
 .header {
-	/*padding: 15px 25px;*/
+	background: green;
+	text-align: center;
 }
 
 #header_list li{
 	display: inline-block;
-}
-
-#header_list li:nth-child(2),
-#header_list li:nth-child(3) {
-	float: right;
+	position: absolute;
+	top: 10px;
+	right: 10px;
 }
 
 .login_menu {
@@ -159,12 +223,21 @@ input[type=submit]:hover {
 }
 
 .progress {
-	width: 70%;
-	margin: 4px auto;
+	width: 100%;
+	margin: 0px auto;
+	border: 1px solid white;
+	background: #0a82b4;
 }
 
-.bear_blink {
-	background-position: 0px -300px;
+.progress-bar {
+	background: #F15A29;
+	min-width: 0;
+}
+
+#open-search {
+	position: absolute;
+	top: 50%;
+	right: -30px;
 }
 
 #search_zone {
@@ -195,4 +268,337 @@ input[type=submit]:hover {
 	position: static;
 	text-align: center;
 	margin: 0 auto;
+}
+
+/*////////////////////////
+
+				Start	Bear 
+
+/////////////////////////*/
+
+#bear_menu {
+	padding-left: 0px;
+	padding-right: 0px;
+	height: 100vh;
+}
+
+#bear_menu p {
+	color: white;
+	padding-top: 10px;
+	padding-bottom: 4px;
+}
+
+.bear_box {
+	height: 340px;
+}
+
+.bear_container {
+	padding: 10px;
+	height: 300px;
+	width: 300px;
+	margin: 0 auto;
+	position: absolute;
+	left: 33%;
+	top: 35px;
+}
+
+.bear_container,
+#bear_body,
+.ear,
+.arm,
+.leg,
+.top_boot,
+.lower_boot,
+.face,
+.eye,
+.nose,
+.mouth,
+.bear_talk,
+.bar {
+	position: absolute;
+}
+
+.bear_color {
+	background: #F15A29;	
+}
+
+.boot_color {
+	background: #39B54A;
+}
+
+.bear_border {
+	border: 4px solid black;
+}
+
+.progress .glyphicon {
+	padding:0px;
+	margin: 0px;
+}
+
+.glyphicon {
+	padding: 2px;
+}
+
+#bear_body {
+	top: 0px;
+	width: 130px;
+	height: 188px;
+	border-radius: 65px 65px 30px 30px;
+	-o-border-radius: 65px 65px 30px 30px;
+	-webkit-border-radius: 65px 65px 30px 30px;
+	-moz-border-radius: 65px 65px 30px 30px;
+	-webkit-transition: .2s ease-in-out;
+	-moz-transition: .2s ease-in-out;
+	-o-transition: .2s ease-in-out;
+	transition: .2s ease-in-out;
+}
+
+#bear_body,
+#l_arm {
+	left: 20px;
+}
+
+#l_arm {
+	left: 20px;
+}
+
+#r_arm {
+	left: 120px;
+}
+
+.ear {
+	width: 52px;
+	height: 52px;
+	border-radius: 50% 50%;
+	-o-border-radius: 50% 50%;
+	-webkit-border-radius: 50% 50%;
+	-moz-border-radius: 50% 50%;
+	top: -7px;
+}
+
+#l_ear {
+	left: 0px;
+}
+
+#r_ear {
+	left: 115px;
+}
+
+.leg,
+.top_boot {
+	width: 25px;
+}
+
+.leg {
+	height: 40px;
+	top: 180px;
+}
+
+.top_boot {
+	width: 25px;
+	height: 30px;
+	top: 200px;
+}
+
+.lower_boot {
+	width: 39px;
+	height: 25px;
+	top: 210px;
+	border-radius: 25px 25px 0 0;
+	-o-border-radius: 25px 25px  0 0;
+	-webkit-border-radius: 25px 25px  0 0;
+	-moz-border-radius: 25px 25px  0 0;
+}
+
+#r_lower_boot {
+	left: 91px;
+}
+
+#l_leg,
+#l_top_boot,
+#l_lower_boot {
+	left: 40px;
+}
+
+#r_leg,
+#r_top_boot {
+	left: 105px;
+}
+
+.arm {
+	width: 30px;
+	height: 96px;
+	border-radius: 15px;
+	-o-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	top: 110px;
+}
+
+.bear_talk {
+	top: 50px;
+	left: 170px;
+	background: white;
+	padding: 10px;
+	border-radius: 5px 5px 5px 0;
+	-o-border-radius: 5px 5px 5px 0;
+	-webkit-border-radius: 5px 5px 5px 0;
+	-moz-border-radius: 5px 5px 5px 0;
+}
+
+.face {
+	left: 37px;
+	top: 60px;
+}
+
+.eye,
+.nose,
+.mouth {
+	background: black;
+}
+
+.eye,
+.mouth {
+	border-radius: 5px 5px;
+	-o-border-radius: 5px 5px;
+	-webkit-border-radius: 5px 5px;
+	-moz-border-radius: 5px 5px;
+}
+
+.eye {
+	width: 10px;
+	height: 10px;
+	border-radius: 5px 5px;
+	-o-border-radius: 5px 5px;
+	-webkit-border-radius: 5px 5px;
+	-moz-border-radius: 5px 5px;
+}
+
+#r_eye {
+	left: 40px;
+}
+
+.nose,
+.mouth {
+	left: 17px;
+}
+
+.nose {
+	width: 15px;
+	height: 8px;
+	top: 8px;
+	border-radius: 4px 4px;
+	-o-border-radius: 4px 4px;
+	-webkit-border-radius: 4px 4px;
+	-moz-border-radius: 4px 4px;
+}
+
+.mouth {
+	width: 15px;
+	height: 5px;
+	top: 20px;
+	border-radius: 0 0 5px 5px;
+	-o-border-radius: 0 0 5px 5px;
+	-webkit-border-radius: 0 0 5px 5px;
+	-moz-border-radius: 0 0 5px 5px;
+}
+
+.bar {
+	top: 250px;
+}
+
+.bear_blink {
+	background-position: 0px -300px;
+}
+
+/*////////////////////////
+
+				End	Bear 
+
+/////////////////////////*/
+
+/*////////////////////////
+
+			Start jPanel 
+
+/////////////////////////*/
+
+#jPanelMenu-menu {
+	/*background: #3b3b3b;*/
+}
+
+#jPanelMenu-menu ul {
+	/*border-bottom: 1px solid #484848;*/
+}
+
+#jPanelMenu-menu li a {
+	/*background: #3b3b3b;*/
+	display: block;
+	padding: 0.5em 5%;
+	border-top: 1px solid #484848;
+	border-bottom: 1px solid #2e2e2e;
+	text-decoration: none;
+	/*text-shadow: 0 -1px 2px #222;
+	color: #f7f7f7;*/
+}
+
+#jPanelMenu-menu li a:hover, #jPanelMenu-menu li a:focus {
+	background: #404040;
+}
+
+#jPanelMenu-menu li a:active {
+	background: #363636;
+	-o-box-shadow: 0 2px 7px #222 inset;
+	-ms-box-shadow: 0 2px 7px #222 inset;
+	-moz-box-shadow: 0 2px 7px #222 inset;
+	-webkit-box-shadow: 0 2px 7px #222 inset;
+	box-shadow: 0 2px 7px #222 inset;
+	border-top-color: #222;
+	padding-top: 0.55em;
+	padding-bottom: 0.45em;
+}
+
+.jPanelMenu-panel {
+	-o-box-shadow: 0 0 25px #222;
+	-ms-box-shadow: 0 0 25px #222;
+	-moz-box-shadow: 0 0 25px #222;
+	-webkit-box-shadow: 0 0 25px #222;
+	box-shadow: 0 0 25px #222
+}
+
+/*////////////////////////
+
+			End jPanel 
+
+/////////////////////////*/
+
+
+/* Small devices (tablets, 768px and up) */
+@media only screen and (max-width: 768px) { 
+	
+	.progress .glyphicon {
+		font-size: 8pt;
+	}
+
+	.progress {
+		height: 15px;
+	}
+
+	.progress-bar {
+		height: 15px;
+		line-height: 0px;
+	}
+
+
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media only screen and (max-width: 992px) { 
+	
+}
+
+
+/* Large devices (large desktops, 1200px and up) */
+@media only screen and (max-width: 1200px) { 
+	
 }

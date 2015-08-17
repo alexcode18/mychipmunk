@@ -1,5 +1,5 @@
 App.Views.BearView = Backbone.View.extend({
-	el: '#bear_land',
+	el: '#bear_screen',
 	initialize: function() {
 		console.log('reached BearView');
 		var bear = this.model;

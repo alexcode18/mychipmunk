@@ -59,7 +59,7 @@ $(function(){
 			App.bearView = new App.Views.BearView({
 				model: App.bear
 			});
-			
+			$('.login_menu').toggle();
 		});
 	} else {
 		//post new bear
@@ -68,6 +68,7 @@ $(function(){
 			App.bear = new App.Models.Bear(bear);
 			App.bearView = new App.Views.BearView({model: App.bear});
 		});
+		$('.login_menu').toggle();
 	}
 
 	if (window.location.pathname == '/') {
@@ -84,6 +85,17 @@ $(function(){
 	window.replaceState = function(){    
       location.reload();
 	}
+
+	App.jPM = $.jPanelMenu({
+		menu: '.search-div',
+    trigger: '#open-search',
+    animated: true,
+    duration: 300,
+    direction: 'right',
+    excludedPanelContent: '.search_div'
+	});
+
+	App.jPM.on();
 
 });
 
@@ -115,7 +127,6 @@ function search(){
 			var searchTitle = searches.d.results[i].Title;
 			var searchDesc = searches.d.results[i].Description;
 			var searchUrl = searches.d.results[i].DisplayUrl;
-			console.log(searchTitle);
 			if (searchTitle) {
 				var searchBox = $('<div>').addClass('search_box');
 				var searchUl = $('<ul>').addClass('search_ul');
@@ -125,6 +136,7 @@ function search(){
 				var urlLi = $('<li>').append(urlA).addClass('search_url').addClass('search_li');
 				searchBox.append(titleLi).append(descLi).append(urlLi);
 				$('#search_zone').append(searchBox);
+				// App.jPM.trigger();
 			}	
 		}
 	});
