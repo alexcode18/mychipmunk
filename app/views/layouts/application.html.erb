@@ -3,7 +3,7 @@
 <head lang="en">
   <title>Search Bear</title>
   <!-- Bootstrap -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js"></script> 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.0/handlebars.min.js"></script> 
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -18,37 +18,7 @@
   <div class="container-fluid">
 
     <div class="row" id="bear_screen">
-
-      <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3" id="bear_menu">
-        <div class="col-xs-12 col-md-12" id="bear_stats">
-          <p>energy</p>
-          <div class="progress">
-            <div class="progress-bar" id="energy" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-              <span class="glyphicon glyphicon-flash"></span>
-            </div>
-          </div>
-          <p>happy</p>
-          <div class="progress">
-            <div class="progress-bar" id="happiness" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-              <span class="glyphicon glyphicon-heart"></span>
-            </div>
-          </div>
-          <p>hungry</p>
-          <div class="progress">
-            <div class="progress-bar" id="hunger" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-              <span class="glyphicon glyphicon-cutlery"></span>
-            </div>
-          </div>
-        </div>
-        <div class="bar">
-          <button class="btn btn-default raise-happiness glyphicon glyphicon-heart">+</button>
-          <button class="btn btn-default raise-energy glyphicon glyphicon-flash">+</button>
-          <button class="btn btn-default raise-hunger food glyphicon glyphicon-apple">+</button>
-          <button class="btn btn-default raise-hunger glyphicon glyphicon-tint">+</button>
-        </div>
-      </div>
-      
-      <div class="col-lg-10 col-md-10 col-sm-9 col-xs-9" id="bear_land">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="bear_land">
         <header class="header col-xs-12 col-md-12">
           <h1>Search Bear <span>(beta)</span></h1>
           <ul id="header_list">
@@ -89,6 +59,60 @@
             <button class="btn btn-default glyphicon glyphicon-search" type="button" id="search_button"></button>
           </span>
         </div><!-- /input-group -->
+
+        
+      </div>
+      <div id="bottom-tab-menu" class="container">
+          <div class="tab-content">
+            <div id="tab1" class="tab-pane fade in active clearfix">
+              <div class="col-6-lg col-6-md col-6-sm col-6-xs">
+                <h3>Data</h3>
+                <div class="col-lg-12 col-md-12 col-12-sm col-12-xs" id="bear_stats">
+                  <!-- <p>energy</p> -->
+                  <div class="progress">
+                    <div class="progress-bar" id="energy" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                      <span class="glyphicon glyphicon-flash"></span>
+                    </div>
+                  </div>
+                  <!-- <p>happy</p> -->
+                  <div class="progress">
+                    <div class="progress-bar" id="happiness" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                      <span class="glyphicon glyphicon-heart"></span>
+                    </div>
+                  </div>
+                  <!-- <p>hungry</p> -->
+                  <div class="progress">
+                    <div class="progress-bar" id="hunger" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                      <span class="glyphicon glyphicon-cutlery"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6-lg col-6-md col-6-sm col-6-xs">
+                <h3>Food</h3>
+                <div class="bar">
+                  <button class="btn btn-default raise-happiness glyphicon glyphicon-heart">+</button>
+                  <button class="btn btn-default raise-energy glyphicon glyphicon-flash">+</button>
+                  <button class="btn btn-default raise-hunger food glyphicon glyphicon-apple">+</button>
+                  <button class="btn btn-default raise-hunger glyphicon glyphicon-tint">+</button>
+                </div>
+              </div>
+            </div>
+            <div id="tab2" class="tab-pane fade">
+              <h3>About</h3>
+            </div>
+          </div>
+          <ul class="nav nav-pills">
+            <li class="active">
+              <a data-toggle="pill" href="#tab1">Chippy Data</a>
+            </li>
+            <li>
+              <a data-toggle="pill" href="#tab2">About the Site</a>
+            </li>
+            <li>
+              <a data-toggle="pill" href="/privacy">privacy</a>
+            </li>
+          </ul>
       </div>
     </div>
   </div>

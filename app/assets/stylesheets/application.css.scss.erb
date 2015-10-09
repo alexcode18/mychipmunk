@@ -73,7 +73,7 @@ table {
 
 /*////////////////////////
 
-			End Reset.css
+		End Reset.css
 
 /////////////////////////*/
 
@@ -268,17 +268,26 @@ input[type=submit]:hover {
 	border-bottom: 1px solid black;
 }
 
-.bar {
-	position: static;
-	text-align: center;
-	margin: 0 auto;
+input[name='search'] {
+	padding: 25px;
+	font-size: 20px;
 }
 
-/*////////////////////////
+#search_button {
+	padding: 11px 25px ;
+	font-size: 20px;
+	margin-top: -1px;
+}
 
-				Start	Bear 
+/*///////////////////////
+
+		Start Bear 
 
 /////////////////////////*/
+
+#bear_screen {
+	height: 100vh;
+}
 
 #bear_menu {
 	padding-left: 0px;
@@ -317,8 +326,7 @@ input[type=submit]:hover {
 .eye,
 .nose,
 .mouth,
-.bear_talk,
-.bar {
+.bear_talk {
 	position: absolute;
 }
 
@@ -507,10 +515,6 @@ input[type=submit]:hover {
 	height:20px;
 }
 
-.bar {
-	top: 250px;
-}
-
 .bear_blink {
 	background-position: 0px -300px;
 }
@@ -572,7 +576,38 @@ input[type=submit]:hover {
 
 /*////////////////////////
 
-			End jPanel 
+		End jPanel 
+
+/////////////////////////*/
+
+
+/*////////////////////////
+
+	START Bottom Tab Menu
+
+/////////////////////////*/
+
+#bottom-tab-menu {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+}
+
+.bar {
+	/*position: static;*/
+	/*text-align: center;*/
+	/*margin: 0 auto;*/
+}
+
+#tab1 .col-6-lg {
+	float: left;
+	width: 50%;
+}
+
+/*////////////////////////
+
+	END Bottom Tab Menu 
 
 /////////////////////////*/
 
@@ -584,14 +619,14 @@ input[type=submit]:hover {
 		font-size: 8pt;
 	}
 
-	.progress {
+	/*.progress {
 		height: 15px;
 	}
 
 	.progress-bar {
 		height: 15px;
 		line-height: 0px;
-	}
+	}*/
 
 	.header {
 		text-align: left;

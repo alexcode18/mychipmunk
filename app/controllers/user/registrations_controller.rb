@@ -50,9 +50,23 @@ class User::RegistrationsController < Devise::RegistrationsController
   # end
 
   # The path used after sign up.
-  # def after_sign_up_path_for(resource)
-  #   super(resource)
-  # end
+  def after_sign_up_path_for(resource)
+
+    if resource.bear_id === undefined || resource.bear_id === nil do
+      @new_bear = Bear.new()
+      @new_bear.name = Faker::Name.first_name()
+      @new_bear.gender = ["M", "F"].sample
+      @new_bear.hunger = 100
+      @new_bear.happiness = 100
+      @new_bear.energy = 100
+      @new_bear.user_id = resource.id
+
+      resource.bear_id = @new_bear.id
+      resource.save()
+      @new_bear.save()
+    end
+    respond_with resource, signed_in_root_path(resource)
+  end
 
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)
