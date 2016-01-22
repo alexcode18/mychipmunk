@@ -12,7 +12,7 @@ Rails.application.configure do
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
-
+  config.action_mailer.perform_deliveries = true
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 
@@ -38,11 +38,13 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { :host => 'localhost' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: "smtp.gmail.com",
-    port: 587,
-    authentication: "plain",
-    enable_starttls_auto: true,
-    user_name: 'novelogue@gmail.com',
-    password: ENV["SEARCHER_EMAIL_KEY"]
+    :address              => "smtp.zoho.com", 
+    :port                 => 465,                 
+    :user_name            => 'alex@mychipmunk.com',
+    :password             => ENV['SEARCHER_EMAIL_KEY'],         
+    :authentication       => :login,
+    :ssl                  => true,
+    :tls                  => true,
+    :enable_starttls_auto => true
   }
 end

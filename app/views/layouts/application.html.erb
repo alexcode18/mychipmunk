@@ -40,14 +40,9 @@
         </header>
 
         <div>
-          <% if user_signed_in? %>
-            <div class="bear_box col-xs-12 col-md-12" id="<% if current_user.bear_id %><%= current_user.bear_id %><% else %><%= 'none' %><% end %>">
+            <div class="bear_box col-xs-12 col-md-12" id="<% if current_user %><%= current_user.bear_id %><% else %><%= 'none' %><% end %>">
+              <p>howdy howdy</p>
             </div>
-          <% else %>
-            <div class="adopt_bear_box col-xs-12 col-md-12">
-              <p>Adopt this bear?</p>
-            </div>
-          <% end %>
           <li class="btn btn-default" id="open-search">
             <div><span class="glyphicon glyphicon-chevron-right"></span><span class="glyphicon glyphicon-list"></span>&#09;&#09;&#09;<span class="glyphicon glyphicon-chevron-left"></span><span class="glyphicon glyphicon-tree-conifer"></span></div>
           </li>
@@ -119,11 +114,28 @@
 
   <nav id="menu" class="search_div">
       <div class="col-xs-12 col-sm-12 col-md-12" >
+        
       </div>  
   </nav>
 
-  <nav id="jPanelMenu-menu" class="pull-right">
+  <nav id="jPanelMenu-menu" class="container-fluid">
     <ul id="search_zone">
+      <li class="search_item">
+        <div class="search_box row">
+          <div class="col-lg-9 col-md-9">
+            <h2 class="search_title">
+              Gardening tips - Better Homes and Gardens
+            </h2>
+            <p class="search_link">www.gardendesign.com</p>
+          </div>
+          <div class="col-lg-3 col-md-3">-></div>
+        </div>
+        <div class="search_dropdown">
+          <p class="search_description">
+            Create the perfect front yard and backyard landscapes with our gardening tips. We'll tell you about beautiful annual, perennial, bulb, and rose flowers, as well as ...
+          </p>
+        </div>
+      </li>
     </ul>
   </nav>
 

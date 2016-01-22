@@ -53,6 +53,7 @@ $(function(){
 	if (sPath == '/' && $('.bear_box').attr('id') != 'none') {
 		//post existing bear
 		bearID = parseInt($('.bear_box').attr('id'));
+		console.log('bearID ' + bearID);
 		$.get('/bears/' + bearID).done(function(bear){
 			console.log(bear);
 			App.bear = new App.Models.Bear(bear);
@@ -63,11 +64,13 @@ $(function(){
 		});
 	} else {
 		//post new bear
-		$.post('/bears').done(function(bear){
+		// $.post('/bears').done(function(bear){
+			resetLocalStorageBear();
+			var bear = JSON.parse(localStorage['bear'])
 			console.log(bear);
-			App.bear = new App.Models.Bear(bear);
+			App.bear = bear;
 			App.bearView = new App.Views.BearView({model: App.bear});
-		});
+		// });
 		$('.login_menu').toggle();
 	}
 
@@ -88,16 +91,39 @@ $(function(){
 
 	App.jPM = $.jPanelMenu({
 		menu: '.search-div',
-    trigger: '#open-search',
-    animated: true,
-    duration: 300,
-    direction: 'right',
-    excludedPanelContent: '.search_div'
+	    trigger: '#open-search',
+	    animated: true,
+	    duration: 300,
+	    direction: 'right',
+	    excludedPanelContent: '.search_div'
 	});
 
 	App.jPM.on();
 
 });
+
+function resetLocalStorageBear(){
+	// localStorage.setItem('attributes.id', 'adoptable');				
+	// localStorage.setItem('attributes.name', 'Valerie');			
+	// localStorage.setItem('attributes.gender', 'F');
+	// localStorage.setItem('attributes.energy', 100);
+	// localStorage.setItem('attributes.happiness', 100);
+	// localStorage.setItem('attributes.hunger', 100);
+
+	var newBear = {
+		'attributes': {
+			'id': 'adoptable', 
+			'name': 'Valerie', 
+			'gender': 'F', 
+			'energy': 100, 
+			'happiness': 100, 
+			'hunger': 100
+		}
+	}
+	localStorage['bear'] = JSON.stringify(newBear);
+	console.log(localStorage['bear']);
+	
+}
 
 function renderErrors(errors){
 	for (var i = 0; i < errors.length; i++){
@@ -126,13 +152,16 @@ function search(){
 		for(var i = 0; i < searches.d.results.length; i++) {
 			var searchTitle = searches.d.results[i].Title;
 			var searchDesc = searches.d.results[i].Description;
-			var searchUrl = searches.d.results[i].DisplayUrl;
+			var searchUrl = searches.d.results[i].Url;
+			var searchDisplayUrl = searches.d.results[i].DisplayUrl;
+			var searchUrlHost = searchUrl.host;
+			console.log(searchUrl);
 			if (searchTitle) {
 				var searchBox = $('<div>').addClass('search_box');
 				var searchUl = $('<ul>').addClass('search_ul');
 				var titleLi = $('<li>').text(searchTitle).addClass('search_title').addClass('search_li');
 				var descLi = $('<li>').text(searchDesc).addClass('search_desc').addClass('search_li');
-				var urlA = $('<a>').text(searchUrl).attr('href', searchUrl);
+				var urlA = $('<a>').text(searchDisplayUrl).attr('href', searchUrl);
 				var urlLi = $('<li>').append(urlA).addClass('search_url').addClass('search_li');
 				searchBox.append(titleLi).append(descLi).append(urlLi);
 				$('#search_zone').append(searchBox);
