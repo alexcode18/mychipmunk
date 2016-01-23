@@ -50,7 +50,7 @@ App.Views.BearView = Backbone.View.extend({
 			var newEnergy = that.lowerBar(1,'energy');
 			var newHappiness = that.lowerBar(1,'happiness');
 			var newHunger = that.lowerBar(1,'hunger');
-			if (this.model.attributes.id != 'adoptable') {
+			if (bearID != 'adoptable') {
 				App.bear.set({
 					energy: newEnergy,
 					happiness: newHappiness,
@@ -58,7 +58,9 @@ App.Views.BearView = Backbone.View.extend({
 				});
 
 				App.bear.save();	
-			}	
+			} else {
+
+			}
 		}, 86000);
 		
 	},
@@ -119,7 +121,7 @@ App.Views.BearView = Backbone.View.extend({
 	},
 	lowerBar: function(num, stat) {
 		var newArg;
-
+		// debugger;
 		if (this.model.attributes.id != 'adoptable') {
 			if (this.model.get(stat) != 20) {
 				if (this.model.attributes.id != 'adoptable') {
@@ -132,16 +134,18 @@ App.Views.BearView = Backbone.View.extend({
 			}
 			return newStat;
 		} else if (this.model.attributes.id == 'adoptable') {
-			if (this.model['attributes'][stat] < 100) {
-				console.log('raised ' + stat);
-				if (this.model['attributes'][stat] <= 95) {
+			console.log('should be lowering bar');
+			if (this.model['attributes'][stat] <= 100) {
+				console.log('lowered ' + stat + ' to ' + this.model['attributes'][stat]);
+				if (this.model['attributes'][stat] > 20) {
 					this.model['attributes'][stat] = this.model['attributes'][stat] - num;
-					console.log('raised if statement for ' + stat);
-				} else if (this.model['attributes'][stat] + num >= 95) {
-					this.model['attributes'][stat] = 100;
+					console.log('lowered if statement for ' + stat);
 				}
+				updatedBear = this.model.attributes;
+				localStorage['bear'] = '{attributes: ' + JSON.stringify(updatedBear) + '}';
 			}
 		}
+		this.renderFeelings();
 		// need to not allow progress to go below 10%
 		// 
 		

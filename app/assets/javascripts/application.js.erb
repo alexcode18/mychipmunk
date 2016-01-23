@@ -65,13 +65,16 @@ $(function(){
 	} else {
 		//post new bear
 		// $.post('/bears').done(function(bear){
+		if (localStorage['bear']) {
+			
+		} else {
 			resetLocalStorageBear();
-			var bear = JSON.parse(localStorage['bear'])
-			console.log(bear);
-			App.bear = bear;
-			App.bearView = new App.Views.BearView({model: App.bear});
-		// });
-		$('.login_menu').toggle();
+		}
+
+		var bear = JSON.parse(localStorage['bear']);
+		console.log(bear);
+		App.bear = bear;
+		App.bearView = new App.Views.BearView({model: App.bear});
 	}
 
 	if (window.location.pathname == '/') {
